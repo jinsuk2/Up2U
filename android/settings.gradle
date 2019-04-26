@@ -1,0 +1,3 @@
+rootProject.name = 'up2u'
+
+include ':app'
