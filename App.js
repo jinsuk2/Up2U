@@ -1,17 +1,18 @@
-import React, { Component } from "react";
-import { StyleSheet, View } from "react-native";
-import Game from "./js/screens/Game";
-
 import React, {Component} from 'react';
-import {Platform, StyleSheet, Text, View} from 'react-native';
-import { TouchableOpacity } from 'native-base';
+import Game from "./js/screens/Game";
+import {StyleSheet, View} from 'react-native';
 import RootStackNavigator from './js/navigation/RootStackNavigator';
 
-export default class App extends Component {
+class App extends Component {
 
   render() {
     return (
+      // <View>
+      //   <Game />
+      // </View>
       <RootStackNavigator />
     );
   }
 }
+
+export default App;

@@ -8,6 +8,7 @@ import HomeScreen from "../screens/Home/Home";
 import NameScreen from "../screens/Name/Name";
 import CameraScreen from "../screens/Camera/Camera";
 import ReadyScreen from "../screens/Ready/Ready";
+import StartScreen from "../screens/Start/Start";
 
 const InitStack = createStackNavigator(
   {
