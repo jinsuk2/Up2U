@@ -1,6 +1,8 @@
 import React from "react";
 import { View, Text, Image } from "react-native";
-export default () => {
+export default props => {
+  const winner = props.navigation.getParam("winner");
+
   return (
     <View
       style={{
@@ -9,12 +11,13 @@ export default () => {
         alignItems: "center"
       }}
     >
-      <Text>The winner is: </Text>
       <Image
         style={{ width: 100, height: 50 }}
         source={require("../../assets/crown.png")}
       />
-      <Image borderRadius={150} source={require("../../assets/test.jpg")} />
+      <Text>Winner is {winner.name}</Text>
+
+      <Image borderRadius={100} source={winner.photo} />
     </View>
   );
 };
