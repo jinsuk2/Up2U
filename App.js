@@ -1,16 +1,14 @@
 import React, { Component } from "react";
-import { Platform, StyleSheet, Text, View } from "react-native";
+import { StyleSheet, View } from "react-native";
+import Game from "./screens/Game";
 
-export default class App extends Component {
-  render() {
-    return (
-      <View>
-        <View style={{ width: "50%", backgroundColor: "red" }} />
-        <View style={{ width: "50%", backgroundColor: "blue" }} />
-      </View>
-    );
-  }
-}
+export default () => {
+  return (
+    <View>
+      <Game />
+    </View>
+  );
+};
 
 const styles = StyleSheet.create({
   container: {
