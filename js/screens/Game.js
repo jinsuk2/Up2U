@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { View, TouchableOpacity, Vibration, Text } from "react-native";
+import { View, TouchableOpacity, Vibration, Text, Image } from "react-native";
 import CountDown from "react-native-countdown-component";
 import Orientation from "react-native-orientation";
 const PlayerCard = ({ player, color, onPress }) => {
@@ -12,11 +12,16 @@ const PlayerCard = ({ player, color, onPress }) => {
       style={{
         height: "100%",
         width: "50%",
-        backgroundColor: color,
+        backgroundColor: "white",
         justifyContent: "center",
         alignItems: "center"
       }}
     >
+      <Image
+        style={{ width: 300, height: 300 }}
+        borderRadius={10}
+        source={player.photo}
+      />
       <Text>{player.name}</Text>
     </TouchableOpacity>
   );
@@ -32,14 +37,14 @@ export default props => {
     //Orientation.unlockAllOrientations(); //this will unlock the view to all Orientations
   });
   const testUsers = [
-    { name: "1", photo: "aa", didWin: true },
-    { name: "2", photo: "bb", didWin: true },
-    { name: "3", photo: "cc", didWin: true },
-    { name: "4", photo: "dd", didWin: true },
-    { name: "5", photo: "aa", didWin: true },
-    { name: "6", photo: "bb", didWin: true },
-    { name: "7", photo: "cc", didWin: true },
-    { name: "8", photo: "dd", didWin: true }
+    { name: "1", photo: require("../../assets/download-1.jpg"), didWin: true },
+    { name: "2", photo: require("../../assets/download-2.jpg"), didWin: true },
+    { name: "3", photo: require("../../assets/download-3.jpg"), didWin: true },
+    { name: "4", photo: require("../../assets/download-4.jpg"), didWin: true },
+    { name: "5", photo: require("../../assets/download.jpg"), didWin: true },
+    { name: "6", photo: require("../../assets/images-1.jpg"), didWin: true },
+    { name: "7", photo: require("../../assets/images-2.jpg"), didWin: true },
+    { name: "8", photo: require("../../assets/images.jpg"), didWin: true }
   ];
   const [users, setUsers] = useState(testUsers);
   const [pointer, setPointer] = useState(0);

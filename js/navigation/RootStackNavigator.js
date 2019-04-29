@@ -1,9 +1,9 @@
 import React from "react";
 import {
-    createStackNavigator,
-    createAppContainer,
-    createSwitchNavigator
-  } from "react-navigation";
+  createStackNavigator,
+  createAppContainer,
+  createSwitchNavigator
+} from "react-navigation";
 import HomeScreen from "../screens/Home";
 import NameScreen from "../screens/Name";
 import CameraScreen from "../screens/Camera";
@@ -23,7 +23,7 @@ const InitStack = createStackNavigator(
   },
   {
     headerMode: "none",
-    initialRouteName: "Home"
+    initialRouteName: "Game"
   }
 );
 
