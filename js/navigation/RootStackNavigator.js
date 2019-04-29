@@ -12,9 +12,9 @@ import ReadyScreen from "../screens/Ready/Ready";
 const InitStack = createStackNavigator(
   {
     Home: HomeScreen,
-    // Name: NameScreen,
-    // Camera: CameraScreen,
-    // Ready: ReadyScreen
+    Name: NameScreen,
+    Camera: CameraScreen,
+    Ready: ReadyScreen
   },
   {
     headerMode: "none",
