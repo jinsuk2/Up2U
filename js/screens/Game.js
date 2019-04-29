@@ -24,7 +24,8 @@ const PlayerCard = ({ player, color, onPress }) => {
 const shuffle = array => {
   return array.sort(() => Math.random() - 0.5);
 };
-export default () => {
+export default props => {
+  console.log(props);
   useEffect(() => {
     Orientation.lockToLandscape(); //this will lock the view to Portrait
     //Orientation.lockToLandscape(); //this will lock the view to Landscape
@@ -69,6 +70,7 @@ export default () => {
 
           if (users.length == 2) {
             console.log("The winner is", users[pointer].name);
+            props.navigation.navigate("Award");
           } else if (users.length <= pointer + 3) {
             setPointer(0);
             const newUser = users.filter(user => user.didWin);
@@ -87,6 +89,7 @@ export default () => {
           users[pointer].didWin = false;
           if (users.length == 2) {
             console.log("The winner is", users[pointer + 1].name);
+            props.navigation.navigate("Award");
           } else if (users.length <= pointer + 3) {
             setPointer(0);
             const newUser = users.filter(user => user.didWin);

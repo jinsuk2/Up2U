@@ -4,7 +4,7 @@ export default () => {
   return (
     <View
       style={{
-        height: "100%",
+        padding: 20,
         justifyContent: "center",
         alignItems: "center"
       }}
@@ -12,9 +12,9 @@ export default () => {
       <Text>The winner is: </Text>
       <Image
         style={{ width: 100, height: 50 }}
-        source={require("../assets/crown.png")}
+        source={require("../../assets/crown.png")}
       />
-      <Image borderRadius={150} source={require("../assets/test.jpg")} />
+      <Image borderRadius={150} source={require("../../assets/test.jpg")} />
     </View>
   );
 };
