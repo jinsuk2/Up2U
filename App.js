@@ -1,7 +1,9 @@
-import React, { Component } from "react";
+import React, { Component, useEffect } from "react";
 import { StyleSheet, View } from "react-native";
 import Game from "./screens/Game";
-
+import CountDown from "react-native-countdown-component";
+import Award from "./screens/Award";
+import Orientation from "react-native-orientation";
 export default () => {
   return (
     <View>
