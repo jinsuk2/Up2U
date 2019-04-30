@@ -1,36 +1,37 @@
 import React, { useState }from 'react';
 import {
     View,
-    Text
+    Text,
+    Image,
 } from 'react-native';
-import { Image } from 'react-native-elements';
+import {
+    Card, CardItem
+} from 'native-base'
 import { Button } from 'native-base';
 
-export default ({nav, photos, playerList}) => {
-
-    const [player, setPlayer] = useState([]);
-
-    const addPlayer = (photos, playerList) => {
-        setPlayer([
-          ...player,
-          {
-            id: player.length,
-            source: photos[0].data.uri,
-            name: playerList[0]
-          }
-        ]);
-      };
+export default ({nav, players}) => {
 
     return (
         <View>
             <Text>This is the Ready page.</Text>
-            <Image style={{ height: 300, width: 240 }}
-                source={{ uri: photos[0].data.uri}}></Image>
-            <Text>{playerList[0]}</Text>
+            {players && players.map(player => {
+                let name = player.name;
+                let pic = player.photo;
+                return (
+                    <Card>
+                        <CardItem>
+                            <Text>
+                                {name}
+                            </Text>
+                            <Image style={{width: '100%', height: '100%'}} source={{uri: pic.uri}}/>
+                        </CardItem>
+                    </Card>
+                )
+            })}
             <Button rounded
                     onPress={() => {
-                        addPlayer(photos, playerList);
-                        nav.navigate("Game", {player: player})
+                        // addPlayer(photos, playerList);
+                        nav.navigate("Game")
                     }}>
                 <Text>to start screen</Text>
             </Button>

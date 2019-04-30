@@ -11,7 +11,7 @@ export default (Name = ({ nav }) => {
 	const addPlayer = () => {
         if (playerList.length >= 8) {
             alert("You have reached the maximum number of players!");
-        } else if (currentPlayer = ''){
+        } else if (currentPlayer == ''){
             alert("You need to enter a nickkity name!");
         } else if (currentPlayer.length <= 3){
             alert("4 or more letters plz")
@@ -43,12 +43,15 @@ export default (Name = ({ nav }) => {
 				})}
 			<Input
 				value={currentPlayer}
-				placeholder="Enter A Nickname..."
+                placeholder="Enter A Nickname..."
+                maxLength={20}
 				onChangeText={(text) => {
 					setCurr(text);
 				}}
 			/>
-			<Button
+
+            {/*For Debug*/}
+            {/* <Button
 				rounded
 				onPress={() => {
 					console.log(playerList);
@@ -56,7 +59,8 @@ export default (Name = ({ nav }) => {
 				}}
 			>
 				<Text>Test Button</Text>
-			</Button>
+            </Button> */}
+            
 			<Button
 				rounded
 				onPress={() => {

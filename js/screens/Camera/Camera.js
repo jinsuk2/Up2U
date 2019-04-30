@@ -7,27 +7,50 @@ import {
   ImageBackground,
   Image
 } from "react-native";
+import{
+  Card, CardItem
+} from 'native-base';
 import styles from "./styles";
 
 export default ({nav, playerList}) => {
 
-    const [photos, setPhoto] = useState([]);
+    const [players, setPlayers] = useState([]);
     const [snapped, setSnap] = useState(false);
-    const [players, setPlayers] = useState(playerList.length);
+    const [currentPlayer, setCurr] = useState(playerList[0]);
+    const [front, setFront] = useState(true);
 
-    const repeatCamera = () => {
-      while(players) {
-        return(
-          <View></View>
-        )
-        setPlayers(players--)
-      }
+    // const repeatCamera = () => {
+    //   while(players) {
+    //     return(
+    //       <View></View>
+    //     )
+    //     setPlayers(players--)
+    //   }
+    // }
+
+    const savePic = (photo) => {
+      setPlayers([
+        ...players,
+        {
+          id: players.length,
+          photo: photo,
+          name: currentPlayer
+        }
+      ]);
     }
+
+    //For Camera Front or Back
+    const type = () => {
+      if (front) {
+        return RNCamera.Constants.Type.front;
+      } else return RNCamera.Constants.Type.back;
+    }
+    
       return (
         <View style={styles.container}>
           <RNCamera
             style={styles.preview}
-            type={RNCamera.Constants.Type.back}
+            type={type()}
             flashMode={RNCamera.Constants.FlashMode.off}
             captureAudio={false}
             permissionDialogTitle={"Permission to use camera"}
@@ -48,21 +71,28 @@ export default ({nav, playerList}) => {
                     style={{
                       flex: 0,
                       flexDirection: "row",
-                      justifyContent: "center"
+                      justifyContent: "center",
                     }}
                   >
+                  <TouchableOpacity style={styles.capture}
+                    onPress={() => 
+                      setFront(!front)
+                    }
+                    >
+                    <Text> Flip </Text>
+                  </TouchableOpacity>
                     <TouchableOpacity
                       onPress={() =>
                         this.takePicture(camera)
                           .then(photo => {
-                            setPhoto([
-                                ...photos,
-                                {
-                                  id: photos.length,
-                                  data: photo
-                                }
-                              ]);
                             setSnap(true);
+                            savePic(photo);
+                            if (players.length > playerList.length) {
+                              nav.navigate("Ready", {players: players})
+                            } else {
+                              setCurr(playerList[players.length])
+                              setSnap(false);
+                            }
                           })
                           .catch(error => console.log(error))
                       }
@@ -70,79 +100,11 @@ export default ({nav, playerList}) => {
                     >
                       <Text style={{ fontSize: 14 }}> SNAP </Text>
                     </TouchableOpacity>
-                  </View>
-                );
-              } else if (snapped) {
-                return (
-                  <View
-                    style={{
-                      flex: 0,
-                      flexDirection: "row",
-                      justifyContent: "center"
-                    }}
-                  >
-                    <ImageBackground
-                      style={{
-                        height: photos[0].data.height,
-                        width: photos[0].data.width
-                      }}
-                      source={{ uri: photos[0].data.uri }}
-                    >
-                      <TouchableOpacity
-                        style={{
-                          flex: 0,
-                          backgroundColor: "#fff",
-                          borderRadius: 5,
-                          padding: 15,
-                          paddingHorizontal: 20,
-                          alignSelf: "center",
-                          justifyContent: "center",
-                          margin: 5
-                        }}
-                        onPress={() => {
-                          setSnap(false);
-                          camera.resumePreview()
-                        }}
-                      >
-                        <Text style={{ fontSize: 14 }}> Back </Text>
-                      </TouchableOpacity>
-                      <TouchableOpacity
-                        style={{
-                          flex: 0,
-                          backgroundColor: "#fff",
-                          borderRadius: 5,
-                          padding: 15,
-                          paddingHorizontal: 20,
-                          alignSelf: "center",
-                          justifyContent: "center",
-                          margin: 2
-                        }}
-                        onPress={() => {                          
-                            repeatCamera()
-                        }}
-                      >
-                      </TouchableOpacity>
-                      <TouchableOpacity
-                        style={{
-                          flex: 0,
-                          backgroundColor: "#fff",
-                          borderRadius: 5,
-                          padding: 15,
-                          paddingHorizontal: 20,
-                          alignSelf: "center",
-                          justifyContent: "center",
-                          margin: 2
-                        }}
-                        onPress={() => {
-                          nav.navigate("Ready", {
-                            photos: photos,
-                            playerList: playerList
-                          });
-                        }}
-                      >
-                        <Text style={{ fontSize: 14 }}> Finish </Text>
-                      </TouchableOpacity>
-                    </ImageBackground>
+                    <Card>
+							        <CardItem>
+									      <Text>{currentPlayer}</Text>
+						 	        </CardItem>
+						        </Card>
                   </View>
                 );
               }
@@ -160,7 +122,7 @@ export default ({nav, playerList}) => {
         base64: true,
         fixOrientation: true,
         forceUpOrientation: true,
-        pauseAfterCapture: true,
+        // pauseAfterCapture: true,
       };
       let data = await camera.takePictureAsync(options);
       return data;
