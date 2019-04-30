@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import React, { useState } from 'react';
 import { Input } from 'react-native-elements';
 import { View } from 'react-native';
@@ -79,3 +80,15 @@ export default (Name = ({ nav }) => {
 		</View>
 	);
 });
+=======
+import React from "react";
+import { View, Text } from "react-native";
+
+export default Name => {
+  return (
+    <View>
+      <Text>This is the name page.</Text>
+    </View>
+  );
+};
+>>>>>>> award and result page seperated with reactn

@@ -1,17 +1,12 @@
-import React, { Component } from "react";
-import Game from "./js/screens/Game";
-import { StyleSheet, View } from "react-native";
+import React, { setGlobal } from "reactn";
+
 import RootStackNavigator from "./js/navigation/RootStackNavigator";
 
-class App extends Component {
-  render() {
-    return (
-      // <View>
-      //   <Game />
-      // </View>
-      <RootStackNavigator />
-    );
-  }
-}
+// Set an initial global state directly:
+setGlobal({
+  winnerList: []
+});
 
-export default App;
+export default (App = () => {
+  return <RootStackNavigator />;
+});
