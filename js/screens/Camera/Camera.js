@@ -13,7 +13,16 @@ export default ({nav, playerList}) => {
 
     const [photos, setPhoto] = useState([]);
     const [snapped, setSnap] = useState(false);
+    const [players, setPlayers] = useState(playerList.length);
 
+    const repeatCamera = () => {
+      while(players) {
+        return(
+          <View></View>
+        )
+        setPlayers(players--)
+      }
+    }
       return (
         <View style={styles.container}>
           <RNCamera
@@ -97,7 +106,22 @@ export default ({nav, playerList}) => {
                       >
                         <Text style={{ fontSize: 14 }}> Back </Text>
                       </TouchableOpacity>
-  
+                      <TouchableOpacity
+                        style={{
+                          flex: 0,
+                          backgroundColor: "#fff",
+                          borderRadius: 5,
+                          padding: 15,
+                          paddingHorizontal: 20,
+                          alignSelf: "center",
+                          justifyContent: "center",
+                          margin: 2
+                        }}
+                        onPress={() => {                          
+                            repeatCamera()
+                        }}
+                      >
+                      </TouchableOpacity>
                       <TouchableOpacity
                         style={{
                           flex: 0,
@@ -116,7 +140,7 @@ export default ({nav, playerList}) => {
                           });
                         }}
                       >
-                        <Text style={{ fontSize: 14 }}> Use </Text>
+                        <Text style={{ fontSize: 14 }}> Finish </Text>
                       </TouchableOpacity>
                     </ImageBackground>
                   </View>
