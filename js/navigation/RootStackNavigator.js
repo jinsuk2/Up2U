@@ -4,27 +4,14 @@ import {
   createAppContainer,
   createSwitchNavigator
 } from "react-navigation";
-<<<<<<< HEAD
-import HomeScreen from "../screens/Home";
-import NameScreen from "../screens/Name";
-import CameraScreen from "../screens/Camera";
-import ReadyScreen from "../screens/Ready";
-import StartScreen from "../screens/Start";
-import GameScreen from "../screens/Game";
-=======
 import HomeScreen from "../screens/Home/Home";
-import NameScreen from "../screens/Name/Name";
+import NameScreen from "../screens/Name";
 import CameraScreen from "../screens/Camera/Camera";
 import ReadyScreen from "../screens/Ready/Ready";
 import StartScreen from "../screens/Game";
 import ResultScreen from "../screens/Result";
->>>>>>> award and result page seperated with reactn
 import AwardScreen from "../screens/Award";
-<<<<<<< HEAD
-
-=======
 import RevealScreen from "../screens/Reveal";
->>>>>>> swiper component refactored to use react hook
 const InitStack = createStackNavigator(
   {
     Home: HomeScreen,

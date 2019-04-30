@@ -31,6 +31,7 @@ export default (Reveal = ({ navigation }) => {
             this.swiper = swiper;
           }}
           onSwiped={() => onSwiped("general")}
+          backgroundColor="black"
           onSwipedLeft={() => onSwiped("left")}
           onSwipedRight={() => onSwiped("right")}
           onSwipedTop={() => onSwiped("top")}
