@@ -33,12 +33,11 @@ const shuffle = array => {
   return array.sort(() => Math.random() - 0.5);
 };
 export default props => {
-  console.log(props);
   useEffect(() => {
-    Orientation.lockToLandscape(); //this will lock the view to Portrait
-    //Orientation.lockToLandscape(); //this will lock the view to Landscape
-    //Orientation.unlockAllOrientations(); //this will unlock the view to all Orientations
+    Orientation.lockToLandscape();
   });
+  const [x, updateState] = useState();
+
   const testUsers = [
     { name: "1", photo: require("../../assets/download-1.jpg"), didWin: true },
     { name: "2", photo: require("../../assets/download-2.jpg"), didWin: true },
@@ -51,10 +50,12 @@ export default props => {
   ];
   const [users, setUsers] = useState(testUsers);
   const [pointer, setPointer] = useState(0);
-  const [counter, setCounter] = useState(3 * users.length);
+  const [counter, setCounter] = useState(5);
+  const [key, setKey] = useState(0);
   return (
     <View style={{ flexDirection: "row", height: "100%" }}>
       <CountDown
+        key={key}
         style={{
           position: "absolute",
           left: 0,
@@ -71,14 +72,16 @@ export default props => {
         timeLabels={{ s: "Versus" }}
       />
       <PlayerCard
+        key={users[pointer].name}
         player={users[pointer]}
         color="red"
         onPress={() => {
+          setKey(key + 1);
           users[pointer + 1].didWin = false;
-
           if (users.length == 2) {
             console.log("The winner is", users[pointer].name);
             props.navigation.navigate("Award", { winner: users[pointer] });
+            setUsers(testUsers);
           } else if (users.length <= pointer + 3) {
             setPointer(0);
             const newUser = users.filter(user => user.didWin);
@@ -91,15 +94,18 @@ export default props => {
       />
 
       <PlayerCard
+        key={users[pointer + 1].name}
         player={users[pointer + 1]}
         color="blue"
         onPress={() => {
+          setKey(key + 1);
           users[pointer].didWin = false;
           if (users.length == 2) {
             console.log("The winner is", users[pointer + 1].name);
             props.navigation.navigate("Award", {
               winner: users[pointer + 1]
             });
+            setUsers(testUsers);
           } else if (users.length <= pointer + 3) {
             setPointer(0);
             const newUser = users.filter(user => user.didWin);
