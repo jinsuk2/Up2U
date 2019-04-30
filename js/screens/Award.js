@@ -1,7 +1,7 @@
 import React from "react";
-import { View, Text, Image } from "react-native";
-export default props => {
-  const winner = props.navigation.getParam("winner");
+import { View, Text, Image, TouchableOpacity } from "react-native";
+export default ({ navigation }) => {
+  const winner = navigation.getParam("winner");
 
   return (
     <View
@@ -18,6 +18,13 @@ export default props => {
       <Text>Winner is {winner.name}</Text>
 
       <Image borderRadius={100} source={winner.photo} />
+      <TouchableOpacity
+        onPress={() => {
+          navigation.navigate("Game");
+        }}
+      >
+        <Text>One more?</Text>
+      </TouchableOpacity>
     </View>
   );
 };
