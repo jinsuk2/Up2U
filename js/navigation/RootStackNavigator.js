@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 import {
     createStackNavigator,
     createAppContainer,
@@ -9,23 +9,27 @@ import NameScreen from "../screens/Name";
 import CameraScreen from "../screens/Camera";
 import ReadyScreen from "../screens/Ready";
 import StartScreen from "../screens/Start";
+import GameScreen from "../screens/Game";
+import AwardScreen from "../screens/Award";
 
 const InitStack = createStackNavigator(
   {
     Home: HomeScreen,
     Name: NameScreen,
     Camera: CameraScreen,
-    Ready: ReadyScreen
+    Ready: ReadyScreen,
+    Game: GameScreen,
+    Award: AwardScreen
   },
   {
     headerMode: "none",
-    initialRouteName: "Home"
+    initialRouteName: "Award"
   }
 );
 
 const PlayStack = createStackNavigator(
   {
-    Start: StartScreen,
+    Start: StartScreen
     // Game: GameScreen,
     // Winner: WinnerScreen,
     // Message: MessageScreen
@@ -38,7 +42,7 @@ const PlayStack = createStackNavigator(
 
 const AppStack = createStackNavigator(
   {
-    Init: InitStack,
+    Init: InitStack
     // Play: PlayStack
   },
   {
@@ -48,16 +52,16 @@ const AppStack = createStackNavigator(
 );
 
 export default createAppContainer(
-    createSwitchNavigator(
-      {
-        // TODO:
-        // OnboardLoading: OnboardLoading,
-        App: AppStack,
-        // TODO:
-        // Onboard: OnboardScreen
-      },
-      {
-        initialRouteName: "App"
-      }
-    )
-  );
+  createSwitchNavigator(
+    {
+      // TODO:
+      // OnboardLoading: OnboardLoading,
+      App: AppStack
+      // TODO:
+      // Onboard: OnboardScreen
+    },
+    {
+      initialRouteName: "App"
+    }
+  )
+);
