@@ -5,14 +5,13 @@ import Orientation from "react-native-orientation";
 import PlayerCard from "../components/PlayerCard";
 import { shuffle } from "../helpers";
 import { testUsers } from "../fakeData";
-import Dialog, { DialogContent } from "react-native-popup-dialog";
 import { sanFranciscoWeights } from "react-native-typography";
 export default props => {
   const originalUser = JSON.parse(JSON.stringify(testUsers));
   const [users, setUsers] = useState(testUsers);
   const [pointer, setPointer] = useState(0);
   const [key, setKey] = useState(0);
-  const [visible, setVisible] = useState(false);
+  const [userKey, setUserKey] = useState(0);
   useEffect(() => {
     Orientation.lockToLandscape();
   });
@@ -26,7 +25,7 @@ export default props => {
           return { ...user, didWin: true };
         })
       );
-      props.navigation.navigate("Award", { winner });
+      props.navigation.navigate("Result", { winner });
     } else if (users.length <= pointer + 3) {
       setPointer(0);
       const newUser = users.filter(user => user.didWin);
@@ -45,10 +44,9 @@ export default props => {
           return { ...user, didWin: true };
         })
       );
-      props.navigation.navigate("Award", {
+      props.navigation.navigate("Result", {
         winner
       });
-      props.navigation.navigate("Award", { winner });
     } else if (users.length <= pointer + 3) {
       setPointer(0);
       const newUser = users.filter(user => user.didWin);
@@ -75,6 +73,7 @@ export default props => {
           Vibration.vibrate();
           setUsers(shuffle(users));
           setPointer(0);
+          setUserKey(userKey + 1);
           setKey(key + 1);
         }}
         digitStyle={{ backgroundColor: "#FFF" }}
@@ -83,7 +82,7 @@ export default props => {
         timeLabels={{ s: "" }}
       />
       <PlayerCard
-        key={"player" + key}
+        key={"player" + userKey}
         player={users[pointer]}
         color="red"
         onPress={() => {
@@ -92,7 +91,7 @@ export default props => {
       />
 
       <PlayerCard
-        key={"player" + key + 1}
+        key={"player" + userKey + 1}
         player={users[pointer + 1]}
         color="blue"
         onPress={() => {

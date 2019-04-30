@@ -20,7 +20,10 @@
     "react-native-sound": "^0.10.12",
     "react-native-typography": "^1.4.0",
     "react-native-vector-icons": "^6.4.2",
-    "react-navigation": "^3.9.1"
+    "react-navigation": "^3.9.1",
+    "react-redux": "^7.0.3",
+    "reactn": "^1.0.0",
+    "redux": "^4.0.1"
   },
   "devDependencies": {
     "@babel/core": "^7.4.3",
