@@ -1,25 +1,23 @@
 import React from "react";
 import {
-    createStackNavigator,
-    createAppContainer,
-    createSwitchNavigator
-  } from "react-navigation";
-import HomeScreen from "../screens/Home";
+  createStackNavigator,
+  createAppContainer,
+  createSwitchNavigator
+} from "react-navigation";
+import HomeScreen from "../screens/Home/Home";
 import NameScreen from "../screens/Name";
-import CameraScreen from "../screens/Camera";
-import ReadyScreen from "../screens/Ready";
-import StartScreen from "../screens/Start";
-import GameScreen from "../screens/Game";
+import CameraScreen from "../screens/Camera/Camera";
+import ReadyScreen from "../screens/Ready/Ready";
+import StartScreen from "../screens/Game";
+import ResultScreen from "../screens/Result";
 import AwardScreen from "../screens/Award";
-
+import RevealScreen from "../screens/Reveal";
 const InitStack = createStackNavigator(
   {
     Home: HomeScreen,
     Name: NameScreen,
     Camera: CameraScreen,
-    Ready: ReadyScreen,
-    Game: GameScreen,
-    Award: AwardScreen
+    Ready: ReadyScreen
   },
   {
     headerMode: "none",
@@ -39,15 +37,30 @@ const PlayStack = createStackNavigator(
     initialRouteName: "Start"
   }
 );
-
-const AppStack = createStackNavigator(
+const ResultStack = createStackNavigator(
   {
-    Init: InitStack
-    // Play: PlayStack
+    Result: ResultScreen,
+    Award: AwardScreen,
+    Reveal: RevealScreen
+    // Game: GameScreen,
+    // Winner: WinnerScreen,
+    // Message: MessageScreen
   },
   {
     headerMode: "none",
-    initialRouteName: "Init"
+    initialRouteName: "Result"
+  }
+);
+
+const AppStack = createStackNavigator(
+  {
+    Init: InitStack,
+    Play: PlayStack,
+    Result: ResultStack
+  },
+  {
+    headerMode: "none",
+    initialRouteName: "Play"
   }
 );
 
