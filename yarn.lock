@@ -5293,7 +5293,7 @@ react-native-camera@^2.6.0:
   integrity sha512-g0Hi4yhUg1yBsYbW9aLxVaX+rgl9sKrrDAGF6difiRTvwCUEqlID2DosLCQQPkLSniJHVa8gc+SwCegahU23aA==
   dependencies:
     prop-types "^15.6.2"
-    
+
 react-native-countdown-component@^2.4.0:
   version "2.4.0"
   resolved "https://registry.yarnpkg.com/react-native-countdown-component/-/react-native-countdown-component-2.4.0.tgz#b7ecd384105f18f4cb2542e13680942d8499f313"
@@ -5378,15 +5378,6 @@ react-native-pixel-perfect@^1.0.1:
   resolved "https://registry.yarnpkg.com/react-native-pixel-perfect/-/react-native-pixel-perfect-1.0.2.tgz#8e6dc97e377caa4bd07f9e584ba438d53c0e25e8"
   integrity sha512-0IvYCNkxuQbQC9q4tI+C3i6o38nbx916p7gBRBWuPxDhKBCuTkVV3VukcfW6vtjRlwQm6kwQcF9OtI+yUBt+YA==
 
-<<<<<<< HEAD
-react-native-ratings@^6.3.0:
-  version "6.3.1"
-  resolved "https://registry.yarnpkg.com/react-native-ratings/-/react-native-ratings-6.3.1.tgz#4e4bd87f376423dc62c933f570fc1932c78adaa4"
-  integrity sha512-+WEtk4wPvnoN5YbfWcmyM4LpKOlvkrFlpQe0KrqeWBAOkN6OXOZYBtiCh97dCIb8Ovpm7goOEcTf3T1MGCi2LA==
-  dependencies:
-    lodash "^4.17.4"
-    prop-types "^15.5.10"
-=======
 react-native-popup-dialog@^0.18.2:
   version "0.18.2"
   resolved "https://registry.yarnpkg.com/react-native-popup-dialog/-/react-native-popup-dialog-0.18.2.tgz#f36474974e3838ac670f03e006dbc75d5d224b38"
@@ -5411,7 +5402,6 @@ react-native-root-siblings@^3.1.7:
   dependencies:
     prop-types "^15.6.2"
     static-container "^1.0.0"
->>>>>>> object mutability issue fixed with current user
 
 react-native-safe-area-view@^0.13.0:
   version "0.13.1"
