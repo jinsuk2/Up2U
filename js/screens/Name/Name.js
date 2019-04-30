@@ -1,11 +1,19 @@
-import React, { useState } from 'react';
-import { Input } from 'react-native-elements';
-import { View } from 'react-native';
-import { Button, Card, CardItem, Body, Text, Content, Container } from 'native-base';
+import React, { useState } from "react";
+import { Input } from "react-native-elements";
+import { View } from "react-native";
+import {
+  Button,
+  Card,
+  CardItem,
+  Body,
+  Text,
+  Content,
+  Container
+} from "native-base";
 
 export default (Name = ({ nav }) => {
-	const [ playerList, setPlayerList ] = useState([]);
-	const [ currentPlayer, setCurr ] = useState('');
+  const [playerList, setPlayerList] = useState([]);
+  const [currentPlayer, setCurr] = useState("");
 
 	//This method should push each text into the position
 	const addPlayer = () => {

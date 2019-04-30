@@ -1,103 +1,101 @@
 import React, { useState, useEffect } from "react";
-import { View, TouchableOpacity, Vibration, Text } from "react-native";
+import { View, Vibration } from "react-native";
 import CountDown from "react-native-countdown-component";
 import Orientation from "react-native-orientation";
-const PlayerCard = ({ player, color, onPress }) => {
-  return (
-    <TouchableOpacity
-      onPress={() => {
-        onPress();
-        Vibration.vibrate();
-      }}
-      style={{
-        height: "100%",
-        width: "50%",
-        backgroundColor: color,
-        justifyContent: "center",
-        alignItems: "center"
-      }}
-    >
-      <Text>{player.name}</Text>
-    </TouchableOpacity>
-  );
-};
-const shuffle = array => {
-  return array.sort(() => Math.random() - 0.5);
-};
+import PlayerCard from "../components/PlayerCard";
+import { shuffle } from "../helpers";
+import { testUsers } from "../fakeData";
+import { sanFranciscoWeights } from "react-native-typography";
+
 export default props => {
-  console.log(props);
-  useEffect(() => {
-    Orientation.lockToLandscape(); //this will lock the view to Portrait
-    //Orientation.lockToLandscape(); //this will lock the view to Landscape
-    //Orientation.unlockAllOrientations(); //this will unlock the view to all Orientations
-  });
-  const testUsers = [
-    { name: "1", photo: "aa", didWin: true },
-    { name: "2", photo: "bb", didWin: true },
-    { name: "3", photo: "cc", didWin: true },
-    { name: "4", photo: "dd", didWin: true },
-    { name: "5", photo: "aa", didWin: true },
-    { name: "6", photo: "bb", didWin: true },
-    { name: "7", photo: "cc", didWin: true },
-    { name: "8", photo: "dd", didWin: true }
-  ];
+  const originalUser = JSON.parse(JSON.stringify(testUsers));
   const [users, setUsers] = useState(testUsers);
   const [pointer, setPointer] = useState(0);
-  const [counter, setCounter] = useState(3 * users.length);
+  const [key, setKey] = useState(0);
+  const [userKey, setUserKey] = useState(0);
+  useEffect(() => {
+    Orientation.lockToLandscape();
+  }, []);
+  const handleOnPressLeft = () => {
+    setKey(key + 1);
+    users[pointer + 1].didWin = false;
+    if (users.length == 2) {
+      let winner = users[pointer];
+      setUsers(
+        originalUser.map(user => {
+          return { ...user, didWin: true };
+        })
+      );
+      props.navigation.navigate("Result", { winner });
+    } else if (users.length <= pointer + 3) {
+      setPointer(0);
+      const newUser = users.filter(user => user.didWin);
+      setUsers(shuffle(newUser));
+    } else {
+      setPointer(pointer + 2);
+    }
+  };
+  const handleOnPressRight = () => {
+    setKey(key + 1);
+    users[pointer].didWin = false;
+    if (users.length == 2) {
+      let winner = users[pointer + 1];
+      setUsers(
+        originalUser.map(user => {
+          return { ...user, didWin: true };
+        })
+      );
+      props.navigation.navigate("Result", {
+        winner
+      });
+    } else if (users.length <= pointer + 3) {
+      setPointer(0);
+      const newUser = users.filter(user => user.didWin);
+      setUsers(shuffle(newUser));
+    } else {
+      setPointer(pointer + 2);
+    }
+  };
+
   return (
     <View style={{ flexDirection: "row", height: "100%" }}>
       <CountDown
+        key={key}
         style={{
           position: "absolute",
           left: 0,
           right: 0,
-          bottom: "50%",
+          bottom: "40%",
           zIndex: 1
         }}
-        until={counter}
+        until={5}
         size={30}
-        onFinish={() => {}}
+        onFinish={() => {
+          Vibration.vibrate();
+          setUsers(shuffle(users));
+          setPointer(0);
+          setUserKey(userKey + 1);
+        }}
         digitStyle={{ backgroundColor: "#FFF" }}
-        digitTxtStyle={{ color: "black" }}
+        digitTxtStyle={{ color: "black", ...sanFranciscoWeights.thin }}
         timeToShow={["S"]}
         timeLabels={{ s: "" }}
       />
       <PlayerCard
+        key={"player" + userKey}
         player={users[pointer]}
         color="red"
         onPress={() => {
-          users[pointer + 1].didWin = false;
-
-          if (users.length == 2) {
-            console.log("The winner is", users[pointer].name);
-            props.navigation.navigate("Award");
-          } else if (users.length <= pointer + 3) {
-            setPointer(0);
-            const newUser = users.filter(user => user.didWin);
-
-            setUsers(shuffle(newUser));
-          } else {
-            setPointer(pointer + 2);
-          }
+          handleOnPressLeft();
         }}
       />
 
       <PlayerCard
+        key={"player" + userKey + 1}
         player={users[pointer + 1]}
         color="blue"
         onPress={() => {
-          users[pointer].didWin = false;
-          if (users.length == 2) {
-            console.log("The winner is", users[pointer + 1].name);
-            props.navigation.navigate("Award");
-          } else if (users.length <= pointer + 3) {
-            setPointer(0);
-            const newUser = users.filter(user => user.didWin);
-
-            setUsers(shuffle(newUser));
-          } else {
-            setPointer(pointer + 2);
-          }
+          handleOnPressRight();
         }}
       />
     </View>

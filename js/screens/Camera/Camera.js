@@ -12,7 +12,7 @@ import{
 } from 'native-base';
 import styles from "./styles";
 
-export default ({nav, playerList}) => {
+export default ({ nav, playerList }) => {
 
     const [players, setPlayers] = useState([]);
     const [snapped, setSnap] = useState(false);
