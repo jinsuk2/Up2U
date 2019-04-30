@@ -8,6 +8,7 @@ import {
     Card, CardItem
 } from 'native-base'
 import { Button } from 'native-base';
+import { NavigationActions } from 'react-navigation';
 
 export default ({nav, players}) => {
 
@@ -31,7 +32,7 @@ export default ({nav, players}) => {
             <Button rounded
                     onPress={() => {
                         // addPlayer(photos, playerList);
-                        nav.navigate("Game")
+                        nav.navigate("Play", {}, NavigationActions.navigate({ routeName: "Game"}))
                     }}>
                 <Text>to start screen</Text>
             </Button>
