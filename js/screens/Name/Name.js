@@ -12,36 +12,36 @@ import {
 
 export default Name = ({nav, players}) => {
 
-    const [playerList, setPlayerList] = useState(['']);
+    const sample = [{id: 0},{},{},{}]
+    const [playerList, setPlayerList] = useState(sample);
     // const [currentPlayer, setCurrent] = useState([]);
 
-    // const addPlayers = (text) => {
+    // const namePlayers = (text, i) => {
     //     setPlayerList(
-    //         playerList.push(currentPlater[text])
+    //         playerList[i] = text
     //     )
     // }
-
-    const namePlayers = (text, i) => {
-        setPlayerList(
-            playerList[i] = text
-        )
-    }
     
-    let list = [];
+    // let list = [];
 
-    for (let i = 0; i < players; i++) {
-        let index = i;
-        list.push(
-            <Input
-                placeholder="Nickname"
-                onChangeText={(text) => namePlayers(text, index)}
-            />
-        )
-    }
+    // for (let i = 0; i < players; i++) {
+    //     // let index = i;
 
     return (
         <View>
-            {list}
+            {/* {list} */}
+            {playerList.map((data, index) => {
+                return (
+                    <Input
+                        index={index}
+                        placeholder="Nickname"
+                        onChangeText={(text) => setPlayerList(
+                            [...playerList, {
+                            name: text
+                        }])}
+                    />
+                )
+            })}
             <Text>
                 This is the name page. There are {players} number of players
             </Text>
