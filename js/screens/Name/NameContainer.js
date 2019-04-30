@@ -8,10 +8,8 @@ export default class NameContainer extends Component {
     }
 
     render() {
-        const players = this.props.navigation.getParam("players");
         return (
             <Name
-                players = {players}
                 nav = {this.props.navigation}
             />
         );

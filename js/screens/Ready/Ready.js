@@ -30,7 +30,7 @@ export default ({nav, photos, playerList}) => {
             <Button rounded
                     onPress={() => {
                         addPlayer(photos, playerList);
-                        nav.navigate("Start", {player: player})
+                        nav.navigate("Game", {player: player})
                     }}>
                 <Text>to start screen</Text>
             </Button>

@@ -23,7 +23,7 @@ const InitStack = createStackNavigator(
   },
   {
     headerMode: "none",
-    initialRouteName: "Award"
+    initialRouteName: "Home"
   }
 );
 

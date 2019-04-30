@@ -11,12 +11,10 @@ import { withNavigation } from 'react-navigation';
 
 export default Home = ({nav}) => {
 
-    const [players, setPlayers] = useState(2);
-
     return (
         <View>
             <Text>This is the home page.</Text>
-            <NumberInput
+            {/* <NumberInput
                 value={players}
                 type='plus-minus'
                 minValue={2}
@@ -30,11 +28,11 @@ export default Home = ({nav}) => {
                 editable={false}
                 rightButtonBackgroundColor={"#64B5F6"}
                 leftButtonBackgroundColor={"#F8BBD0"}
-            ></NumberInput>
+            ></NumberInput> */}
             <Button 
                 rounded={true}
                 onPress={() => {
-                    nav.navigate("Name", {players});
+                    nav.navigate("Name");
                 }}>
                 <Text>Start?</Text>
             </Button>
