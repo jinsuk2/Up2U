@@ -5,12 +5,14 @@ export default class HomeContainer extends Component {
     
     constructor(props) {
         super(props);
-        this.state = true;
+        
     }
 
     render() {
         return (
-            <Home></Home>
+            <Home 
+                nav={this.props.navigation}
+            />
         );
     }
 }

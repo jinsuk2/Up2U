@@ -4,11 +4,11 @@ import {
     createAppContainer,
     createSwitchNavigator
   } from "react-navigation";
-import HomeScreen from "../screens/Home/Home";
-import NameScreen from "../screens/Name/Name";
-import CameraScreen from "../screens/Camera/Camera";
-import ReadyScreen from "../screens/Ready/Ready";
-import StartScreen from "../screens/Start/Start";
+import HomeScreen from "../screens/Home";
+import NameScreen from "../screens/Name";
+import CameraScreen from "../screens/Camera";
+import ReadyScreen from "../screens/Ready";
+import StartScreen from "../screens/Start";
 
 const InitStack = createStackNavigator(
   {
