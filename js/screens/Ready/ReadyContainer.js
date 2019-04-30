@@ -8,12 +8,10 @@ export default class ReadyContainer extends Component {
     }
 
     render() {
-        const photos = this.props.navigation.getParam("photos");
-        const playerList = this.props.navigation.getParam("playerList");
+        const players = this.props.navigation.getParam("players");
         return (
             <Ready nav={this.props.navigation}
-                photos={photos}
-                playerList={playerList}></Ready>
+                players={players}></Ready>
         );
     }
 }
