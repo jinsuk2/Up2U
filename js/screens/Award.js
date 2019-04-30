@@ -2,7 +2,6 @@ import React from "react";
 import { View, Text, Image, TouchableOpacity } from "react-native";
 export default ({ navigation }) => {
   const winner = navigation.getParam("winner");
-
   return (
     <View
       style={{

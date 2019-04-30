@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { View, Text } from "react-native";
+import { View, Text, Vibration } from "react-native";
 import CountDown from "react-native-countdown-component";
 import Orientation from "react-native-orientation";
 import PlayerCard from "../components/PlayerCard";
@@ -18,7 +18,6 @@ export default props => {
   });
   const handleOnPressLeft = () => {
     setKey(key + 1);
-    console.log(users[pointer]);
     users[pointer + 1].didWin = false;
     if (users.length == 2) {
       let winner = users[pointer];
@@ -38,7 +37,6 @@ export default props => {
   };
   const handleOnPressRight = () => {
     setKey(key + 1);
-    console.log(users[pointer + 1]);
     users[pointer].didWin = false;
     if (users.length == 2) {
       let winner = users[pointer + 1];
@@ -62,16 +60,6 @@ export default props => {
 
   return (
     <View style={{ flexDirection: "row", height: "100%" }}>
-      <Dialog
-        visible={visible}
-        onTouchOutside={() => {
-          setVisible(false);
-        }}
-      >
-        <DialogContent>
-          <Text>Faster!!</Text>
-        </DialogContent>
-      </Dialog>
       <CountDown
         key={key}
         style={{
@@ -84,7 +72,10 @@ export default props => {
         until={5}
         size={30}
         onFinish={() => {
-          setVisible(true);
+          Vibration.vibrate();
+          setUsers(shuffle(users));
+          setPointer(0);
+          setKey(key + 1);
         }}
         digitStyle={{ backgroundColor: "#FFF" }}
         digitTxtStyle={{ color: "black", ...sanFranciscoWeights.thin }}
