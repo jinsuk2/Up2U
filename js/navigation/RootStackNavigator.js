@@ -20,7 +20,11 @@ import StartScreen from "../screens/Game";
 import ResultScreen from "../screens/Result";
 >>>>>>> award and result page seperated with reactn
 import AwardScreen from "../screens/Award";
+<<<<<<< HEAD
 
+=======
+import RevealScreen from "../screens/Reveal";
+>>>>>>> swiper component refactored to use react hook
 const InitStack = createStackNavigator(
   {
     Home: HomeScreen,
@@ -49,7 +53,8 @@ const PlayStack = createStackNavigator(
 const ResultStack = createStackNavigator(
   {
     Result: ResultScreen,
-    Award: AwardScreen
+    Award: AwardScreen,
+    Reveal: RevealScreen
     // Game: GameScreen,
     // Winner: WinnerScreen,
     // Message: MessageScreen
