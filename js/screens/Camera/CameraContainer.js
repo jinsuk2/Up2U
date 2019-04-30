@@ -5,12 +5,13 @@ export default class CameraContainer extends Component {
     
     constructor(props) {
         super(props);
-        this.state = true;
     }
-
+    
     render() {
+        const playerList = this.props.navigation.getParam("playerList");
         return (
-            <Camera></Camera>
+            <Camera nav={this.props.navigation}
+                playerList={playerList}></Camera>
         );
     }
 }

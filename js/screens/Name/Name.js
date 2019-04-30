@@ -12,61 +12,62 @@ import {
 
 export default Name = ({nav, players}) => {
 
-    const sample = [{id: 0},{},{},{}]
-    const [playerList, setPlayerList] = useState(sample);
-    // const [currentPlayer, setCurrent] = useState([]);
-
-    // const namePlayers = (text, i) => {
-    //     setPlayerList(
-    //         playerList[i] = text
-    //     )
-    // }
+    const [playerList, setPlayerList] = useState([]);
+    const [currentPlayer, setCurr] = useState('');
     
-    // let list = [];
-
-    // for (let i = 0; i < players; i++) {
-    //     // let index = i;
+    //This method should push each text into the position
+    const addPlayer = () => {
+        setPlayerList(playerList.concat(currentPlayer));
+        setCurr("");
+    }
 
     return (
         <View>
-            {/* {list} */}
-            {playerList.map((data, index) => {
-                return (
-                    <Input
-                        index={index}
-                        placeholder="Nickname"
-                        onChangeText={(text) => setPlayerList(
-                            [...playerList, {
-                            name: text
-                        }])}
-                    />
-                )
-            })}
-            <Text>
-                This is the name page. There are {players} number of players
-            </Text>
-            <Button 
+            {playerList && 
+                playerList.map(data => {
+                    return(
+                        <Text>
+                            {data}
+                        </Text>
+                    )
+                })}
+            <Input 
+                value={currentPlayer}
+                placeholder="Enter A Nickname..."
+                onChangeText={text => {
+                    setCurr(text)
+                }}>
+            </Input>
+            {/* <Button 
                 onPress={()=>{
                     nav.navigate("Camera", {playerList})
                 }}
                 rounded={true}>
-            </Button>
+            </Button> */}
             <Button
                 rounded
                 onPress={()=>{
-                    console.log(playerList[0]);
-                    console.log(playerList[1]);
+                    console.log(playerList);
+                    console.log(currentPlayer);
                 }}>
-                <Text>Try</Text>
+                <Text>Test Button</Text>
             </Button>
             <Button
                 rounded
                 onPress={()=>{
-                    
+                    addPlayer()
                 }}
                 >
                 <Text>Submit</Text>
-                </Button>
+            </Button>
+            <Button
+                rounded
+                onPress={()=>{
+                    nav.navigate("Camera", {playerList: playerList});
+                }}
+                >
+                <Text>Camera</Text>
+            </Button>
         </View>
     )
 };
