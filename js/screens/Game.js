@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from "react";
-import { View, Text, Vibration } from "react-native";
+import { View, Vibration } from "react-native";
 import CountDown from "react-native-countdown-component";
 import Orientation from "react-native-orientation";
 import PlayerCard from "../components/PlayerCard";
 import { shuffle } from "../helpers";
 import { testUsers } from "../fakeData";
 import { sanFranciscoWeights } from "react-native-typography";
+
 export default props => {
   const originalUser = JSON.parse(JSON.stringify(testUsers));
   const [users, setUsers] = useState(testUsers);
@@ -14,7 +15,7 @@ export default props => {
   const [userKey, setUserKey] = useState(0);
   useEffect(() => {
     Orientation.lockToLandscape();
-  });
+  }, []);
   const handleOnPressLeft = () => {
     setKey(key + 1);
     users[pointer + 1].didWin = false;
@@ -74,7 +75,6 @@ export default props => {
           setUsers(shuffle(users));
           setPointer(0);
           setUserKey(userKey + 1);
-          setKey(key + 1);
         }}
         digitStyle={{ backgroundColor: "#FFF" }}
         digitTxtStyle={{ color: "black", ...sanFranciscoWeights.thin }}
