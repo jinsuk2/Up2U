@@ -15,5 +15,9 @@ export default (styles = StyleSheet.create({
     textAlign: "center",
     color: "#333333",
     marginBottom: 5
+  },
+  picker: {
+    flex: 1,
+    alignSelf: 'center',
   }
 }));

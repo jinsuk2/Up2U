@@ -5,12 +5,15 @@ export default class ReadyContainer extends Component {
     
     constructor(props) {
         super(props);
-        this.state = true;
     }
 
     render() {
+        const photos = this.props.navigation.getParam("photos");
+        const playerList = this.props.navigation.getParam("playerList");
         return (
-            <Ready></Ready>
+            <Ready nav={this.props.navigation}
+                photos={photos}
+                playerList={playerList}></Ready>
         );
     }
 }
