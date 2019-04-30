@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { View, Vibration } from "react-native";
+import { View, Vibration, TouchableOpacity } from "react-native";
 import CountDown from "react-native-countdown-component";
 import Orientation from "react-native-orientation";
 import PlayerCard from "../components/PlayerCard";
@@ -75,6 +75,7 @@ export default props => {
           setUsers(shuffle(users));
           setPointer(0);
           setUserKey(userKey + 1);
+          setKey(key + 1);
         }}
         digitStyle={{ backgroundColor: "#FFF" }}
         digitTxtStyle={{ color: "black", ...sanFranciscoWeights.thin }}
@@ -84,16 +85,13 @@ export default props => {
       <PlayerCard
         key={"player" + userKey}
         player={users[pointer]}
-        color="red"
         onPress={() => {
           handleOnPressLeft();
         }}
       />
-
       <PlayerCard
         key={"player" + userKey + 1}
         player={users[pointer + 1]}
-        color="blue"
         onPress={() => {
           handleOnPressRight();
         }}
