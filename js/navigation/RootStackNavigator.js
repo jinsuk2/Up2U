@@ -28,8 +28,6 @@ const InitStack = createStackNavigator(
 const PlayStack = createStackNavigator(
   {
     Game: GameScreen,
-    // Winner: WinnerScreen,
-    // Message: MessageScreen
   },
   {
     headerMode: "none",
@@ -41,9 +39,6 @@ const ResultStack = createStackNavigator(
     Result: ResultScreen,
     Award: AwardScreen,
     Reveal: RevealScreen
-    // Game: GameScreen,
-    // Winner: WinnerScreen,
-    // Message: MessageScreen
   },
   {
     headerMode: "none",
