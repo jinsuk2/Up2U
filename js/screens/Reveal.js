@@ -27,20 +27,15 @@ export default (Reveal = ({ navigation }) => {
     console.log(`on swiped ${type}`);
   };
 
-  const resetGame = () => {
+  async function resetGame() {
     players.map(player => {
       let uri = player.photo;
-      let path = RNFS.DocumentDirectoryPath + uri;
-      RNFS.exists(path).then(result => {
+      RNFS.exists(uri).then(result => {
         if (result) {
-          RNFS.unlink(path)
-            // spread is a method offered by bluebird to allow for more than a
-            // single return value of a promise. If you use `then`, you will receive
-            // the values inside of an array
-            .spread((success, path) => {
+          RNFS.unlink(uri)
+            .then((success, path) => {
               console.log("FILE DELETED", success, path);
             })
-            // `unlink` will throw an error, if the item to unlink does not exist
             .catch(err => {
               console.log(err.message);
             });
