@@ -1,6 +1,12 @@
-import React, { useGlobal, useEffect, useState, setGlobal, getGlobal } from "reactn";
+import React, {
+  useGlobal,
+  useEffect,
+  useState,
+  setGlobal,
+  getGlobal
+} from "reactn";
 import { View, Text, Image, TouchableOpacity } from "react-native";
-import Orientation from 'react-native-orientation';
+import Orientation from "react-native-orientation";
 
 export default ({ navigation }) => {
   useEffect(() => {
@@ -20,19 +26,19 @@ export default ({ navigation }) => {
     >
       <Image
         style={{ width: 100, height: 50 }}
-        source={
-          require("../../assets/crown.png")
-      }
+        source={require("../../assets/crown.png")}
       />
       <Text>Winner is {winner.name}</Text>
 
-      <Image borderRadius={100} style={{ width: 100, height: 50 }} source={
-        {uri: winner.photo}
-        } />
+      <Image
+        borderRadius={100}
+        style={{ width: 100, height: 50 }}
+        source={{ uri: winner.photo }}
+      />
       <TouchableOpacity
         onPress={() => {
           setGlobal({ winnerList: [...winnerList, winner] });
-          navigation.navigate("Game", { players: players});
+          navigation.navigate("Game", { players: players });
         }}
       >
         <Text>One more?</Text>
@@ -42,15 +48,18 @@ export default ({ navigation }) => {
           setGlobal({ winnerList: [...winnerList, winner] });
           console.log(getGlobal().winnerList);
           navigation.navigate("Award", {
-            winner: getGlobal().winnerList
+            winner: getGlobal().winnerList,
+            players: players
           });
         }}
       >
         <Text>Done</Text>
       </TouchableOpacity>
-      <TouchableOpacity onPress={()=>{
+      {/* For Debug */}
+      {/* <TouchableOpacity onPress={()=>{
         console.log(winner.photo)
-      }}><Text>Debug Button</Text></TouchableOpacity>
+      }}><Text>Debug Button</Text>
+      </TouchableOpacity> */}
     </View>
   );
 };
