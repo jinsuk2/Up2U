@@ -9,7 +9,8 @@ export default class PlayerCard extends Component {
   handleViewRef = ref => (this.view = ref);
 
   render() {
-    const { player, onPress } = this.props;
+    let { player, onPress } = this.props;
+    player = player || { name: "loading", photo: "null" };
     return (
       <TouchableOpacity
         key={player.name}
