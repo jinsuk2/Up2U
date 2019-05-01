@@ -15,11 +15,15 @@ export default class PlayerCard extends Component {
       <TouchableOpacity
         key={player.name}
         onPress={() => {
+          this.props.pressed(true);
           this.view.tada(600).then(() => {
             onPress();
           });
 
           Vibration.vibrate();
+          setTimeout(() => {
+            this.props.pressed(false);
+          }, 1000);
         }}
         style={{
           height: "100%",

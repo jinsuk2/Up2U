@@ -42,6 +42,7 @@ export default ({ navigation }) => {
       />
       <Image borderRadius={100} source={{ uri: winner[0].photo }} />
       <TouchableOpacity
+        disabled={msg ? false : true}
         onPress={() => {
           console.log(msg);
           navigation.navigate("Reveal", { msg: msg.text, winner: winner[0] });
