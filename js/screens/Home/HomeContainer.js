@@ -4,8 +4,7 @@ import Home from './Home';
 export default class HomeContainer extends Component {
     
     constructor(props) {
-        super(props);
-        
+        super(props);   
     }
 
     render() {

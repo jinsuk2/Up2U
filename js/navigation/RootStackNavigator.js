@@ -4,10 +4,10 @@ import {
   createAppContainer,
   createSwitchNavigator
 } from "react-navigation";
-import HomeScreen from "../screens/Home/Home";
+import HomeScreen from "../screens/Home";
 import NameScreen from "../screens/Name";
-import CameraScreen from "../screens/Camera/Camera";
-import ReadyScreen from "../screens/Ready/Ready";
+import CameraScreen from "../screens/Camera";
+import ReadyScreen from "../screens/Ready";
 import StartScreen from "../screens/Game";
 import ResultScreen from "../screens/Result";
 import AwardScreen from "../screens/Award";
@@ -59,7 +59,7 @@ const AppStack = createStackNavigator(
   },
   {
     headerMode: "none",
-    initialRouteName: "Play"
+    initialRouteName: "Init"
   }
 );
 
