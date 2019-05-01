@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react";
-import { View, Vibration, Text } from "react-native";
+import React, { useState, useEffect, getGlobal, useGlobal } from "reactn";
+import { View, Vibration, TouchableOpacity, Text } from "react-native";
 import CountDown from "react-native-countdown-component";
 import Orientation from "react-native-orientation";
 import PlayerCard from "../components/PlayerCard";
@@ -8,8 +8,10 @@ import { testUsers } from "../fakeData";
 import * as Progress from "react-native-progress";
 import { sanFranciscoWeights } from "react-native-typography";
 export default props => {
-  const originalUser = JSON.parse(JSON.stringify(testUsers));
-  const [users, setUsers] = useState(testUsers);
+  const players = props.navigation.getParam("players");
+  // const [player, setPlayer] = useGlobal("players");
+  const originalUser = JSON.parse(JSON.stringify(players));
+  const [users, setUsers] = useState(players);
   const [pointer, setPointer] = useState(0);
   const [key, setKey] = useState(0);
   const [userKey, setUserKey] = useState(0);
@@ -20,6 +22,7 @@ export default props => {
   useEffect(() => {
     Orientation.lockToLandscape();
     if (newGame) {
+      // setPlayer(players);
       setUsers(originalUser);
       setNewGame(false);
     }
@@ -30,7 +33,7 @@ export default props => {
     if (users.length == 2) {
       let winner = users[pointer];
       setNewGame(true);
-      props.navigation.navigate("Result", { winner });
+      props.navigation.navigate("Result", { winner: winner, originalUser: originalUser });
     } else if (users.length <= pointer + 3) {
       setLoading(true);
       setPointer(0);
@@ -49,7 +52,7 @@ export default props => {
     if (users.length == 2) {
       let winner = users[pointer + 1];
       props.navigation.navigate("Result", {
-        winner
+        winner: winner, originalUser: originalUser
       });
     } else if (users.length <= pointer + 3) {
       setLoading(true);
@@ -64,7 +67,7 @@ export default props => {
     }
   };
 
-  console.log(loading);
+  console.log(players);
   if (loading) {
     return (
       <View

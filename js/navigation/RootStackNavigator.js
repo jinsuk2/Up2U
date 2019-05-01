@@ -59,7 +59,7 @@ const AppStack = createStackNavigator(
   },
   {
     headerMode: "none",
-    initialRouteName: "Play"
+    initialRouteName: "Init"
   }
 );
 

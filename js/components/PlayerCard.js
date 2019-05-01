@@ -41,7 +41,9 @@ export default class PlayerCard extends Component {
           <Image
             style={{ width: 300, height: 300 }}
             borderRadius={10}
-            source={player.photo}
+            source={
+              { uri: player.photo }
+            }
           />
           <Text>{player.name}</Text>
         </Animatable.View>
