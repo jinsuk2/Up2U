@@ -7,9 +7,10 @@ import { shuffle } from "../helpers";
 import { testUsers } from "../fakeData";
 import * as Progress from "react-native-progress";
 import { sanFranciscoWeights } from "react-native-typography";
+
 export default props => {
   const players = props.navigation.getParam("players");
-  // const [player, setPlayer] = useGlobal("players");
+  console.log(players);
   const originalUser = JSON.parse(JSON.stringify(players));
   const [users, setUsers] = useState(players);
   const [pointer, setPointer] = useState(0);
@@ -22,7 +23,6 @@ export default props => {
   useEffect(() => {
     Orientation.lockToLandscape();
     if (newGame) {
-      // setPlayer(players);
       setUsers(originalUser);
       setNewGame(false);
     }

@@ -8,7 +8,7 @@ import HomeScreen from "../screens/Home";
 import NameScreen from "../screens/Name";
 import CameraScreen from "../screens/Camera";
 import ReadyScreen from "../screens/Ready";
-import StartScreen from "../screens/Game";
+import GameScreen from "../screens/Game";
 import ResultScreen from "../screens/Result";
 import AwardScreen from "../screens/Award";
 import RevealScreen from "../screens/Reveal";
@@ -27,14 +27,11 @@ const InitStack = createStackNavigator(
 
 const PlayStack = createStackNavigator(
   {
-    Start: StartScreen
-    // Game: GameScreen,
-    // Winner: WinnerScreen,
-    // Message: MessageScreen
+    Game: GameScreen,
   },
   {
     headerMode: "none",
-    initialRouteName: "Start"
+    initialRouteName: "Game"
   }
 );
 const ResultStack = createStackNavigator(
@@ -42,24 +39,10 @@ const ResultStack = createStackNavigator(
     Result: ResultScreen,
     Award: AwardScreen,
     Reveal: RevealScreen
-    // Game: GameScreen,
-    // Winner: WinnerScreen,
-    // Message: MessageScreen
   },
   {
     headerMode: "none",
     initialRouteName: "Result"
-  }
-);
-
-const AppStack = createStackNavigator(
-  {
-    Init: InitStack,
-    Play: PlayStack
-  },
-  {
-    headerMode: "none",
-    initialRouteName: "Init"
   }
 );
 
@@ -68,13 +51,14 @@ export default createAppContainer(
     {
       // TODO:
       // OnboardLoading: OnboardLoading,
-      App: AppStack,
+      Init: InitStack,
+      Play: PlayStack,
       ResultSwtich: ResultStack
       // TODO:
       // Onboard: OnboardScreen
     },
     {
-      initialRouteName: "App"
+      initialRouteName: "Init"
     }
   )
 );

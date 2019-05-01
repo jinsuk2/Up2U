@@ -15,7 +15,6 @@ export default ({nav, players}) => {
     useEffect(() => {
         Orientation.lockToPortrait();
       }, []);
-    const originalUser = JSON.stringify(players);
     
     return (
         <View>
@@ -36,12 +35,11 @@ export default ({nav, players}) => {
             })}
             <Button rounded
                     onPress={() => {
-                        nav.navigate('Play', {players: players})
+                        nav.navigate("Game", {players})
                     }}>
                 <Text>to start screen</Text>
             </Button>
             <Button onPress={() => {
-                console.log(originalUser)
                 console.log(players);
             }}><Text>Debug Button</Text></Button>
         </View>
