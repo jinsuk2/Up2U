@@ -5,6 +5,7 @@ import Orientation from "react-native-orientation";
 
 export default ({ navigation }) => {
   const winner = navigation.getParam("winner");
+  console.log(winner);
   const [msg, setMsg] = useState("");
   useEffect(() => {
     Orientation.lockToPortrait();
@@ -39,7 +40,7 @@ export default ({ navigation }) => {
         value={msg}
         placeholder="Write something to the winner! Congrat him? Make a Request! Leave a comment, be creative!"
       />
-      <Image borderRadius={100} source={winner[0].photo} />
+      <Image borderRadius={100} source={{ uri: winner[0].photo }} />
       <TouchableOpacity
         onPress={() => {
           console.log(msg);

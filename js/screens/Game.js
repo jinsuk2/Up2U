@@ -8,8 +8,9 @@ import { testUsers } from "../fakeData";
 import { sanFranciscoWeights } from "react-native-typography";
 
 export default props => {
-  const originalUser = JSON.parse(JSON.stringify(testUsers));
-  const [users, setUsers] = useState(testUsers);
+  const players = props.navigation.getParam("players");
+  const originalUser = JSON.parse(JSON.stringify(players));
+  const [users, setUsers] = useState(players);
   const [pointer, setPointer] = useState(0);
   const [key, setKey] = useState(0);
   const [userKey, setUserKey] = useState(0);

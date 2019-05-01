@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { RNCamera } from "react-native-camera";
 import {
   Text,
@@ -11,6 +11,7 @@ import{
   Card, CardItem
 } from 'native-base';
 import styles from "./styles";
+import Orientation from "react-native-orientation";
 
 export default ({ nav, playerList }) => {
 
@@ -18,6 +19,9 @@ export default ({ nav, playerList }) => {
     const [snapped, setSnap] = useState(false);
     const [currentPlayer, setCurr] = useState(playerList[0]);
     const [front, setFront] = useState(true);
+    useEffect(() => {
+      Orientation.lockToPortrait();
+    }, []);
 
     // const repeatCamera = () => {
     //   while(players) {
@@ -28,13 +32,14 @@ export default ({ nav, playerList }) => {
     //   }
     // }
 
-    const savePic = (photo) => {
+    const savePic = (photoUri) => {
       setPlayers([
         ...players,
         {
           id: players.length,
-          photo: photo,
-          name: currentPlayer
+          name: currentPlayer,
+          photo: photoUri,
+          didWin: true,
         }
       ]);
     }
@@ -86,7 +91,7 @@ export default ({ nav, playerList }) => {
                         this.takePicture(camera)
                           .then(photo => {
                             setSnap(true);
-                            savePic(photo);
+                            savePic(photo.uri);
                             if (players.length > playerList.length) {
                               nav.navigate("Ready", {players: players})
                             } else {
