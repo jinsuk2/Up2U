@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from "react";
-import { View, Vibration, TouchableOpacity } from "react-native";
+import { View, Vibration, Text } from "react-native";
 import CountDown from "react-native-countdown-component";
 import Orientation from "react-native-orientation";
 import PlayerCard from "../components/PlayerCard";
 import { shuffle } from "../helpers";
 import { testUsers } from "../fakeData";
 import { sanFranciscoWeights } from "react-native-typography";
-
 export default props => {
   const originalUser = JSON.parse(JSON.stringify(testUsers));
   const [users, setUsers] = useState(testUsers);
@@ -14,13 +13,15 @@ export default props => {
   const [key, setKey] = useState(0);
   const [userKey, setUserKey] = useState(0);
   const [newGame, setNewGame] = useState(true);
+  const [loading, setLoading] = useState(false);
+  const [pressed, setPressed] = useState(false);
   useEffect(() => {
     Orientation.lockToLandscape();
     if (newGame) {
       setUsers(originalUser);
       setNewGame(false);
     }
-  }, [users]);
+  }, [users, loading]);
   const handleOnPressLeft = () => {
     setKey(key + 1);
     users[pointer + 1].didWin = false;
@@ -29,9 +30,13 @@ export default props => {
       setNewGame(true);
       props.navigation.navigate("Result", { winner });
     } else if (users.length <= pointer + 3) {
+      setLoading(true);
       setPointer(0);
       const newUser = users.filter(user => user.didWin);
       setUsers(shuffle(newUser));
+      setTimeout(() => {
+        setLoading(false);
+      }, 2000);
     } else {
       setPointer(pointer + 2);
     }
@@ -45,16 +50,37 @@ export default props => {
         winner
       });
     } else if (users.length <= pointer + 3) {
+      setLoading(true);
       setPointer(0);
       const newUser = users.filter(user => user.didWin);
       setUsers(shuffle(newUser));
+      setTimeout(() => {
+        setLoading(false);
+      }, 2000);
     } else {
       setPointer(pointer + 2);
     }
   };
-  console.log(users);
+
+  console.log(loading);
+  if (loading) {
+    return (
+      <View
+        style={{
+          height: "100%",
+          justifyContent: "center",
+          alignItems: "center"
+        }}
+      >
+        <Text>Preparing for the next round...</Text>
+      </View>
+    );
+  }
   return (
-    <View style={{ flexDirection: "row", height: "100%" }}>
+    <View
+      pointerEvents={pressed ? "none" : "auto"}
+      style={{ flexDirection: "row", height: "100%" }}
+    >
       <CountDown
         key={key}
         style={{
@@ -79,6 +105,7 @@ export default props => {
         timeLabels={{ s: "" }}
       />
       <PlayerCard
+        pressed={setPressed}
         key={"player" + userKey}
         player={users[pointer]}
         onPress={() => {
@@ -86,6 +113,7 @@ export default props => {
         }}
       />
       <PlayerCard
+        pressed={setPressed}
         key={"player" + userKey + 1}
         player={users[pointer + 1]}
         onPress={() => {
