@@ -14,10 +14,6 @@ export default ({ nav }) => {
       <Button rounded={true} onPress={() => nav.navigate("Name")}>
         <Text>Start?</Text>
       </Button>
-      <Button rounded={true} onPress={() => 
-        RNFS.exists("file:///data/user/0/com.up2u/cache/Camera/5242c105-f53b-45b2-adc6-1ad50622bee9.jpg").then(result => {console.log(result)})}>
-        <Text>Reset?</Text>
-      </Button>
     </View>
   );
 };
