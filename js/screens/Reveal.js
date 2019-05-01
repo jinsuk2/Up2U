@@ -5,7 +5,10 @@ import Orientation from "react-native-orientation";
 export default (Reveal = ({ navigation }) => {
   const message = navigation.getParam("msg");
   const winner = navigation.getParam("winner");
-  const [cards, setCards] = useState(message.split(" "));
+  const [cards, setCards] = useState([
+    "Hand it back to the owner!",
+    ...message.trim().split(" ")
+  ]);
   const [swipedAll, setSwipedAll] = useState(false);
 
   const renderCard = (card, index) => {

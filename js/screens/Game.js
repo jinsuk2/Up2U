@@ -13,19 +13,20 @@ export default props => {
   const [pointer, setPointer] = useState(0);
   const [key, setKey] = useState(0);
   const [userKey, setUserKey] = useState(0);
+  const [newGame, setNewGame] = useState(true);
   useEffect(() => {
     Orientation.lockToLandscape();
-  }, []);
+    if (newGame) {
+      setUsers(originalUser);
+      setNewGame(false);
+    }
+  }, [users]);
   const handleOnPressLeft = () => {
     setKey(key + 1);
     users[pointer + 1].didWin = false;
     if (users.length == 2) {
       let winner = users[pointer];
-      setUsers(
-        originalUser.map(user => {
-          return { ...user, didWin: true };
-        })
-      );
+      setNewGame(true);
       props.navigation.navigate("Result", { winner });
     } else if (users.length <= pointer + 3) {
       setPointer(0);
@@ -40,11 +41,6 @@ export default props => {
     users[pointer].didWin = false;
     if (users.length == 2) {
       let winner = users[pointer + 1];
-      setUsers(
-        originalUser.map(user => {
-          return { ...user, didWin: true };
-        })
-      );
       props.navigation.navigate("Result", {
         winner
       });
@@ -56,7 +52,7 @@ export default props => {
       setPointer(pointer + 2);
     }
   };
-
+  console.log(users);
   return (
     <View style={{ flexDirection: "row", height: "100%" }}>
       <CountDown
