@@ -3,6 +3,7 @@ import { View, Text, Image, TouchableOpacity } from "react-native";
 
 export default ({ navigation }) => {
   const winner = navigation.getParam("winner");
+  const players = navigation.getParam("originalUser");
   const [winnerList, setWinnerList] = useGlobal("winnerList");
 
   return (
@@ -25,7 +26,7 @@ export default ({ navigation }) => {
       <TouchableOpacity
         onPress={() => {
           setGlobal({ winnerList: [...winnerList, winner] });
-          navigation.navigate("Start");
+          navigation.navigate("Start", { players: players});
         }}
       >
         <Text>One more?</Text>
