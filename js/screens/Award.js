@@ -5,6 +5,7 @@ import Orientation from "react-native-orientation";
 
 export default ({ navigation }) => {
   const winner = navigation.getParam("winner");
+  const players = navigation.getParam("players");
   console.log(winner);
   const [msg, setMsg] = useState("");
   useEffect(() => {
@@ -47,7 +48,7 @@ export default ({ navigation }) => {
         disabled={msg ? false : true}
         onPress={() => {
           console.log(msg);
-          navigation.navigate("Reveal", { msg: msg.text, winner: winner[0] });
+          navigation.navigate("Reveal", { msg: msg.text, winner: winner[0], players: players });
         }}
       >
         <Text>Click to send</Text>

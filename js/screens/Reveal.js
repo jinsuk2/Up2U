@@ -1,11 +1,14 @@
-import React, { Component, useState, useEffect } from "react";
+import React, { Component, useState, useEffect, setGlobal } from "reactn";
 import Swiper from "react-native-deck-swiper";
 import { StyleSheet, Text, View, Image } from "react-native";
-import { Button } from 'native-base';
+import { Button } from "native-base";
 import Orientation from "react-native-orientation";
+import RNFS from "react-native-fs";
+
 export default (Reveal = ({ navigation }) => {
   const message = navigation.getParam("msg");
   const winner = navigation.getParam("winner");
+  const players = navigation.getParam("players");
   const [cards, setCards] = useState([
     "Hand it back to the owner!",
     ...message.trim().split(" ")
@@ -24,14 +27,45 @@ export default (Reveal = ({ navigation }) => {
     console.log(`on swiped ${type}`);
   };
 
+  const resetGame = () => {
+    players.map(player => {
+      let uri = player.photo;
+      let path = RNFS.DocumentDirectoryPath + uri;
+      RNFS.exists(path).then(result => {
+        if (result) {
+          RNFS.unlink(path)
+            // spread is a method offered by bluebird to allow for more than a
+            // single return value of a promise. If you use `then`, you will receive
+            // the values inside of an array
+            .spread((success, path) => {
+              console.log("FILE DELETED", success, path);
+            })
+            // `unlink` will throw an error, if the item to unlink does not exist
+            .catch(err => {
+              console.log(err.message);
+            });
+        }
+      });
+    });
+  };
+
   return (
     <View style={styles.container}>
       <Text>Final Winner is {winner.name}</Text>
-      <Image style={{width: 80, height: 100}}borderRadius={100} source={{uri: winner.photo}} />
-      <Button rounded 
-          onPress={()=>{
-          navigation.navigate("Init", {});
-        }}>
+      <Image
+        style={{ width: 80, height: 100 }}
+        borderRadius={100}
+        source={{ uri: winner.photo }}
+      />
+
+      <Button
+        rounded
+        onPress={() => {
+          resetGame();
+          setGlobal({ winnerList: [] });
+          navigation.navigate("Init");
+        }}
+      >
         <Text>New Game?</Text>
       </Button>
 
