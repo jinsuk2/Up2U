@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "reactn";
 import { RNCamera } from "react-native-camera";
 import {
   Text,
@@ -11,6 +11,7 @@ import{
   Card, CardItem
 } from 'native-base';
 import styles from "./styles";
+import Orientation from "react-native-orientation";
 
 export default ({ nav, playerList }) => {
 
@@ -18,25 +19,22 @@ export default ({ nav, playerList }) => {
     const [snapped, setSnap] = useState(false);
     const [currentPlayer, setCurr] = useState(playerList[0]);
     const [front, setFront] = useState(true);
+    useEffect(() => {
+      Orientation.lockToPortrait();
+    }, []);
 
-    // const repeatCamera = () => {
-    //   while(players) {
-    //     return(
-    //       <View></View>
-    //     )
-    //     setPlayers(players--)
-    //   }
-    // }
-
-    const savePic = (photo) => {
-      setPlayers([
+    async function savePic(photoUri) {
+      await setPlayers([
         ...players,
         {
           id: players.length,
-          photo: photo,
-          name: currentPlayer
+          name: currentPlayer,
+          photo: photoUri,
+          didWin: true,
         }
       ]);
+      setCurr(playerList[players.length+1]);
+      console.log(players.length);
     }
 
     //For Camera Front or Back
@@ -65,7 +63,16 @@ export default ({ nav, playerList }) => {
                     <Text>Loading</Text>
                   </View>
                 );
-              if (!snapped) {
+              if (playerList.length == players.length) {
+                setSnap(true);
+                nav.navigate("Ready", {
+                  players: players
+                })
+              }
+              if (!snapped 
+                // && 
+                // !(playerList.length == players.length)
+                ) {
                 return (
                   <View
                     style={{
@@ -86,13 +93,8 @@ export default ({ nav, playerList }) => {
                         this.takePicture(camera)
                           .then(photo => {
                             setSnap(true);
-                            savePic(photo);
-                            if (players.length > playerList.length) {
-                              nav.navigate("Ready", {players: players})
-                            } else {
-                              setCurr(playerList[players.length])
-                              setSnap(false);
-                            }
+                            savePic(photo.uri);
+                            setSnap(false);
                           })
                           .catch(error => console.log(error))
                       }

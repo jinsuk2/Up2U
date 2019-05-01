@@ -1,6 +1,7 @@
 import React, { Component, useState, useEffect } from "react";
 import Swiper from "react-native-deck-swiper";
-import { Button, StyleSheet, Text, View, Image } from "react-native";
+import { StyleSheet, Text, View, Image } from "react-native";
+import { Button } from 'native-base';
 import Orientation from "react-native-orientation";
 export default (Reveal = ({ navigation }) => {
   const message = navigation.getParam("msg");
@@ -26,7 +27,13 @@ export default (Reveal = ({ navigation }) => {
   return (
     <View style={styles.container}>
       <Text>Final Winner is {winner.name}</Text>
-      <Image borderRadius={100} source={winner.photo} />
+      <Image style={{width: 80, height: 100}}borderRadius={100} source={{uri: winner.photo}} />
+      <Button rounded 
+          onPress={()=>{
+          navigation.navigate("Init", {});
+        }}>
+        <Text>New Game?</Text>
+      </Button>
 
       {swipedAll || (
         <Swiper

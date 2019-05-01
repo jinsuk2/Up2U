@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Input } from "react-native-elements";
 import { View } from "react-native";
 import {
@@ -10,10 +10,15 @@ import {
   Content,
   Container
 } from "native-base";
+import Orientation from "react-native-orientation";
 
 export default (Name = ({ nav }) => {
   const [playerList, setPlayerList] = useState([]);
   const [currentPlayer, setCurr] = useState("");
+
+  useEffect(() => {
+    Orientation.lockToPortrait();
+  }, []);
 
 	//This method should push each text into the position
 	const addPlayer = () => {

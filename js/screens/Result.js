@@ -3,6 +3,7 @@ import { View, Text, Image, TouchableOpacity } from "react-native";
 
 export default ({ navigation }) => {
   const winner = navigation.getParam("winner");
+  const players = navigation.getParam("originalUser");
   const [winnerList, setWinnerList] = useGlobal("winnerList");
 
   return (
@@ -15,15 +16,17 @@ export default ({ navigation }) => {
     >
       <Image
         style={{ width: 100, height: 50 }}
-        source={require("../../assets/crown.png")}
+        source={
+          require("../../assets/crown.png")
+      }
       />
       <Text>Winner is {winner.name}</Text>
 
-      <Image borderRadius={100} source={winner.photo} />
+      <Image borderRadius={100} style={{ width: 100, height: 50 }} source={{uri: winner.photo}} />
       <TouchableOpacity
         onPress={() => {
           setGlobal({ winnerList: [...winnerList, winner] });
-          navigation.navigate("Start");
+          navigation.navigate("Start", { players: players});
         }}
       >
         <Text>One more?</Text>
@@ -39,6 +42,9 @@ export default ({ navigation }) => {
       >
         <Text>Done</Text>
       </TouchableOpacity>
+      <TouchableOpacity onPress={()=>{
+        console.log(winner.photo)
+      }}><Text>Debug Button</Text></TouchableOpacity>
     </View>
   );
 };
