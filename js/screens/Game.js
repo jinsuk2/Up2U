@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, getGlobal } from "reactn";
 import { View, Vibration, TouchableOpacity } from "react-native";
 import CountDown from "react-native-countdown-component";
 import Orientation from "react-native-orientation";

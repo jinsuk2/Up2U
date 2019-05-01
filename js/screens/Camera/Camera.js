@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect } from "reactn";
 import { RNCamera } from "react-native-camera";
 import {
   Text,
@@ -23,17 +23,8 @@ export default ({ nav, playerList }) => {
       Orientation.lockToPortrait();
     }, []);
 
-    // const repeatCamera = () => {
-    //   while(players) {
-    //     return(
-    //       <View></View>
-    //     )
-    //     setPlayers(players--)
-    //   }
-    // }
-
-    const savePic = (photoUri) => {
-      setPlayers([
+    async function savePic(photoUri) {
+      await setPlayers([
         ...players,
         {
           id: players.length,
@@ -42,6 +33,8 @@ export default ({ nav, playerList }) => {
           didWin: true,
         }
       ]);
+      setCurr(playerList[players.length+1]);
+      console.log(players.length);
     }
 
     //For Camera Front or Back
@@ -70,7 +63,16 @@ export default ({ nav, playerList }) => {
                     <Text>Loading</Text>
                   </View>
                 );
-              if (!snapped) {
+              if (playerList.length == players.length) {
+                setSnap(true);
+                nav.navigate("Ready", {
+                  players: players
+                })
+              }
+              if (!snapped 
+                // && 
+                // !(playerList.length == players.length)
+                ) {
                 return (
                   <View
                     style={{
@@ -92,12 +94,7 @@ export default ({ nav, playerList }) => {
                           .then(photo => {
                             setSnap(true);
                             savePic(photo.uri);
-                            if (players.length > playerList.length) {
-                              nav.navigate("Ready", {players: players})
-                            } else {
-                              setCurr(playerList[players.length])
-                              setSnap(false);
-                            }
+                            setSnap(false);
                           })
                           .catch(error => console.log(error))
                       }

@@ -4,7 +4,8 @@ import RootStackNavigator from "./js/navigation/RootStackNavigator";
 
 // Set an initial global state directly:
 setGlobal({
-  winnerList: []
+  winnerList: [],
+  players: []
 });
 
 export default (App = () => {

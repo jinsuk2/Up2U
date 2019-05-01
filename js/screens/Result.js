@@ -4,7 +4,6 @@ import { View, Text, Image, TouchableOpacity } from "react-native";
 export default ({ navigation }) => {
   const winner = navigation.getParam("winner");
   const [winnerList, setWinnerList] = useGlobal("winnerList");
-  console.log(typeof(winner.photo));
 
   return (
     <View
