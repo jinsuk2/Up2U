@@ -1,15 +1,24 @@
-import React from "react";
+import React, { Component } from "react";
 import { TouchableOpacity, Image, Text, Vibration } from "react-native";
 import * as Animatable from "react-native-animatable";
-export default (PlayerCard = ({ player, color, onPress }) => {
-  if (!player) {
-    console.log(player);
-    return <Text>Loading</Text>;
-  } else {
+export default class PlayerCard extends Component {
+  handleViewRef = ref => (this.view = ref);
+  bounce = () =>
+    this.view
+      .bounce(800)
+      .then(endState =>
+        console.log(endState.finished ? "bounce finished" : "bounce cancelled")
+      );
+  render() {
+    const { player, color, onPress } = this.props;
     return (
       <TouchableOpacity
+        key={player.name}
         onPress={() => {
-          onPress();
+          this.view.tada(600).then(() => {
+            onPress();
+          });
+
           Vibration.vibrate();
         }}
         style={{
@@ -20,7 +29,11 @@ export default (PlayerCard = ({ player, color, onPress }) => {
           alignItems: "center"
         }}
       >
-        <Animatable.View animation="bounceInDown">
+        <Animatable.View
+          key={player.name}
+          animation="bounceInDown"
+          ref={this.handleViewRef}
+        >
           <Image
             style={{ width: 300, height: 300 }}
             borderRadius={10}
@@ -31,4 +44,4 @@ export default (PlayerCard = ({ player, color, onPress }) => {
       </TouchableOpacity>
     );
   }
-});
+}

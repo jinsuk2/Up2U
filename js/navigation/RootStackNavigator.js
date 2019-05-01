@@ -55,8 +55,7 @@ const ResultStack = createStackNavigator(
 const AppStack = createStackNavigator(
   {
     Init: InitStack,
-    Play: PlayStack,
-    Result: ResultStack
+    Play: PlayStack
   },
   {
     headerMode: "none",
@@ -69,7 +68,8 @@ export default createAppContainer(
     {
       // TODO:
       // OnboardLoading: OnboardLoading,
-      App: AppStack
+      App: AppStack,
+      ResultSwtich: ResultStack
       // TODO:
       // Onboard: OnboardScreen
     },
