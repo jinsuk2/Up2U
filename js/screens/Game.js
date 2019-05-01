@@ -5,6 +5,7 @@ import Orientation from "react-native-orientation";
 import PlayerCard from "../components/PlayerCard";
 import { shuffle } from "../helpers";
 import { testUsers } from "../fakeData";
+import * as Progress from "react-native-progress";
 import { sanFranciscoWeights } from "react-native-typography";
 export default props => {
   const originalUser = JSON.parse(JSON.stringify(testUsers));
@@ -15,13 +16,14 @@ export default props => {
   const [newGame, setNewGame] = useState(true);
   const [loading, setLoading] = useState(false);
   const [pressed, setPressed] = useState(false);
+
   useEffect(() => {
     Orientation.lockToLandscape();
     if (newGame) {
       setUsers(originalUser);
       setNewGame(false);
     }
-  }, [users, loading]);
+  }, [users]);
   const handleOnPressLeft = () => {
     setKey(key + 1);
     users[pointer + 1].didWin = false;
@@ -73,6 +75,7 @@ export default props => {
         }}
       >
         <Text>Preparing for the next round...</Text>
+        <Progress.Bar indeterminate={true} width={200} color="black" />
       </View>
     );
   }
