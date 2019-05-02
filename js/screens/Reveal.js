@@ -42,7 +42,7 @@ export default (Reveal = ({ navigation }) => {
         }
       });
     });
-  };
+  }
 
   return (
     <View style={styles.container}>

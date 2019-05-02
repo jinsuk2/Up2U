@@ -10,7 +10,7 @@ export default ({ navigation }) => {
   const [msg, setMsg] = useState("");
   useEffect(() => {
     Orientation.lockToPortrait();
-  });
+  }, []);
   const winnerMap = {};
   winner.forEach(user => {
     if (winnerMap[user.name]) {
@@ -41,14 +41,20 @@ export default ({ navigation }) => {
         value={msg}
         placeholder="Write something to the winner! Congrat him? Make a Request! Leave a comment, be creative!"
       />
-      <Image style={{height: 100, width: 80}} borderRadius={100} source={
-        { uri: winner[0].photo }
-        } />
+      <Image
+        style={{ height: 100, width: 80 }}
+        borderRadius={100}
+        source={{ uri: winner[0].photo }}
+      />
       <TouchableOpacity
         disabled={msg ? false : true}
         onPress={() => {
           console.log(msg);
-          navigation.navigate("Reveal", { msg: msg.text, winner: winner[0], players: players });
+          navigation.navigate("Reveal", {
+            msg: msg.text,
+            winner: winner[0],
+            players: players
+          });
         }}
       >
         <Text>Click to send</Text>
