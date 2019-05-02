@@ -41,7 +41,7 @@ export default (Name = ({ nav }) => {
   };
 
   return (
-    <View>
+    <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
       {playerList &&
         playerList.map(data => {
           return (
