@@ -16,9 +16,9 @@ export default (Name = ({ nav }) => {
   const [playerList, setPlayerList] = useState([]);
   const [currentPlayer, setCurr] = useState("");
 
-  useEffect(() => {
-    Orientation.lockToPortrait();
-  }, []);
+  // useEffect(() => {
+  //   Orientation.lockToPortrait();
+  // }, []);
 
   //This method should push each text into the position
   const addPlayer = () => {
@@ -34,11 +34,7 @@ export default (Name = ({ nav }) => {
     }
   };
 
-  const addAlert = () => {
-    if (playerList.length >= 8) {
-      return <Text>Note: You have reached the max. # of players</Text>;
-    }
-  };
+  const addAlert = () => {};
 
   return (
     <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
@@ -88,7 +84,9 @@ export default (Name = ({ nav }) => {
       >
         <Text>Camera</Text>
       </Button>
-      {addAlert()}
+      {playerList.length >= 8 ? (
+        <Text>Note: You have reached the max. # of players</Text>
+      ) : null}
     </View>
   );
 });

@@ -58,7 +58,7 @@ export default createAppContainer(
       // Onboard: OnboardScreen
     },
     {
-      initialRouteName: "Play"
+      initialRouteName: "Init"
     }
   )
 );

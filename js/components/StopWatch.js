@@ -1,26 +1,21 @@
 import React, { Component } from "react";
-import { TouchableOpacity, Image, Text, Vibration } from "react-native";
 import * as Animatable from "react-native-animatable";
-import { Container, Header, Content, Card, CardItem, Body } from "native-base";
-
 import Icon from "react-native-vector-icons/FontAwesome5";
 export default class StopWatch extends Component {
   constructor(props) {
     super(props);
   }
+  handleViewRef = ref => (this.view = ref);
+
   componentDidMount() {
-    this.shake();
-  }
-  componentWillUnmount() {
-    clearInterval(this.shake);
-  }
-  shake = () => {
-    setInterval(() => {
+    this.interval = setInterval(() => {
       console.log("shaking");
       this.view.shake(300);
     }, 1000);
-  };
-  handleViewRef = ref => (this.view = ref);
+  }
+  componentWillUnmount() {
+    clearInterval(this.interval);
+  }
 
   render() {
     return (

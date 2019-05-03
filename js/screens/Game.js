@@ -10,8 +10,8 @@ import { sanFranciscoWeights } from "react-native-typography";
 import StopWatch from "../components/StopWatch";
 import Icon from "react-native-vector-icons/FontAwesome5";
 export default props => {
-  // const players = props.navigation.getParam("players");
-  const players = testUsers;
+  const players = props.navigation.getParam("players");
+  // const players = testUsers;
   console.log(players);
   const originalUser = JSON.parse(JSON.stringify(players));
   const [users, setUsers] = useState(players);
@@ -103,7 +103,7 @@ export default props => {
           alignItems: "center"
         }}
       >
-        <StopWatch />
+        <StopWatch index={key} />
 
         <CountDown
           key={key}
