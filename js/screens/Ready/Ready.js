@@ -1,49 +1,49 @@
-import React, { useEffect } from "react";
-import { View, Text, Image } from "react-native";
-import { Card, CardItem } from "native-base";
-import { Button } from "native-base";
-import Orientation from "react-native-orientation";
-import { NavigationActions } from "react-navigation";
+import React, { useEffect } from 'react';
+import { View, Text, Image, ScrollView } from 'react-native';
+import { Card, CardItem } from 'native-base';
+import { Button } from 'native-base';
+import Orientation from 'react-native-orientation';
+import { NavigationActions } from 'react-navigation';
+import styles from './styles';
+import { testUsers } from '../../fakeData.js';
 
 export default ({ nav, players }) => {
-  useEffect(() => {
-    Orientation.lockToPortrait();
-  }, []);
+	useEffect(() => {
+		Orientation.lockToPortrait();
+	}, []);
 
-  return (
-    <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-      <Text>This is the Ready page.</Text>
-      {players &&
-        players.map(player => {
-          let name = player.name;
-          let pic = player.photo;
-          return (
-            <Card>
-              <CardItem>
-                <Text>{name}</Text>
-                <Image
-                  style={{ width: "100%", height: "100%" }}
-                  source={{ uri: pic }}
-                />
-              </CardItem>
-            </Card>
-          );
-        })}
-      <Button
-        rounded
-        onPress={() => {
-          nav.navigate("Game", { players });
-        }}
-      >
-        <Text>to start screen</Text>
-      </Button>
-      <Button
-        onPress={() => {
-          console.log(players);
-        }}
-      >
-        <Text>Debug Button</Text>
-      </Button>
-    </View>
-  );
+	// console.log(testUsers);
+	return (
+		<View style={styles.container}>
+			<Text>This is the Ready page.</Text>
+			<ScrollView horizontal={true} style={styles.cardContainer} showsHorizontalScrollIndicator={false}>
+				{players &&
+					players.map(player => {
+						let name = player.name;
+						let pic = player.photo;
+						return (
+							<Card>
+								<CardItem style={styles.cards}>
+									<Image
+										style={{ width: 200, height: 200, alignSelf: 'center', flex: 1 }}
+										source={{
+											uri: pic,
+										}}
+									/>
+									<Text style={{ flex: 1, flexDirection: 'column' }}>{name}</Text>
+								</CardItem>
+							</Card>
+						);
+					})}
+			</ScrollView>
+			<Button
+				rounded
+				onPress={() => {
+					nav.navigate('Game', { players });
+				}}
+			>
+				<Text>to start screen</Text>
+			</Button>
+		</View>
+	);
 };

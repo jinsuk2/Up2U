@@ -1,19 +1,21 @@
-import { StyleSheet } from "react-native";
+import { StyleSheet } from 'react-native';
 export default (styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-    backgroundColor: "#F5FCFF"
-  },
-  welcome: {
-    fontSize: 20,
-    textAlign: "center",
-    margin: 10
-  },
-  instructions: {
-    textAlign: "center",
-    color: "#333333",
-    marginBottom: 5
-  }
+	container: {
+		flex: 0,
+		justifyContent: 'center',
+		alignItems: 'center',
+		backgroundColor: '#F5FCFF',
+	},
+	cardContainer: {
+		paddingTop: 120,
+		alignSelf: 'center',
+		flexDirection: 'row',
+	},
+	cards: {
+		height: 350,
+		width: 350,
+		flexWrap: 'wrap',
+		alignSelf: 'center',
+		alignItems: 'center',
+	},
 }));
