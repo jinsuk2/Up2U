@@ -3,6 +3,7 @@ import { Input } from 'react-native-elements';
 import { View } from 'react-native';
 import { Button, Card, CardItem, Body, Text, Content, Container } from 'native-base';
 import Orientation from 'react-native-orientation';
+import styles from './styles';
 
 export default (Name = ({ nav }) => {
 	const [playerList, setPlayerList] = useState([]);
@@ -51,7 +52,7 @@ export default (Name = ({ nav }) => {
 	};
 
 	return (
-		<View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+		<View style={styles.container}>
 			{playerList &&
 				playerList.map(data => {
 					return (

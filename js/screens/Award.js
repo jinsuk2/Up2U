@@ -19,8 +19,14 @@ export default ({ navigation }) => {
 		}
 	});
 	const firstWinner = Object.keys(winnerMap).reduce((a, b) => (winnerMap[a] > winnerMap[b] ? a : b));
-	console.log(typeof firstWinner);
-	// const temp = winner.filter(obj => obj.name == firstWinner);
+
+	// const finalPhoto = Object.keys(winner).find(firstWinner, winner).photo;
+	const finalWinner = winner.find(temp => {
+		return temp.name == firstWinner;
+	});
+	console.log(finalWinner);
+	console.log(typeof finalWinner);
+	// winner.filter(obj => obj.name == firstWinner);
 	return (
 		<View
 			style={{
@@ -36,14 +42,14 @@ export default ({ navigation }) => {
 				value={msg}
 				placeholder="Write something to the winner! Congrat him? Make a Request! Leave a comment, be creative!"
 			/>
-			<Image style={{ height: 100, width: 80 }} borderRadius={100} source={{ uri: winner[0].photo }} />
+			<Image style={{ height: 100, width: 80 }} borderRadius={100} source={{ uri: finalWinner.photo }} />
 			<TouchableOpacity
 				disabled={msg ? false : true}
 				onPress={() => {
 					console.log(msg);
 					navigation.navigate('Reveal', {
 						msg: msg.text,
-						winner: winner[0],
+						winner: finalWinner,
 						players: players,
 					});
 				}}
