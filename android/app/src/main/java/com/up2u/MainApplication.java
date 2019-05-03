@@ -5,7 +5,6 @@ import android.app.Application;
 import com.facebook.react.ReactApplication;
 import com.entria.views.RNViewOverflowPackage;
 import org.reactnative.camera.RNCameraPackage;
-import com.oblador.vectoricons.VectorIconsPackage;
 import com.swmansion.gesturehandler.react.RNGestureHandlerPackage;
 import com.zmxv.RNSound.RNSoundPackage;
 import com.github.yamill.orientation.OrientationPackage;
@@ -32,7 +31,6 @@ public class MainApplication extends Application implements ReactApplication {
           new MainReactPackage(),
             new RNViewOverflowPackage(),
             new RNCameraPackage(),
-            new VectorIconsPackage(),
             new RNGestureHandlerPackage(),
             new RNFSPackage(),
             new RNSoundPackage(),

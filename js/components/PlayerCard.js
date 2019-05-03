@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import { TouchableOpacity, Image, Text, Vibration } from "react-native";
 import * as Animatable from "react-native-animatable";
+import { Container, Header, Content, Card, CardItem, Body } from "native-base";
+import Icon from "react-native-vector-icons/FontAwesome5";
 export default class PlayerCard extends Component {
   constructor(props) {
     super(props);
@@ -39,13 +41,17 @@ export default class PlayerCard extends Component {
           ref={this.handleViewRef}
         >
           <Image
-            style={{ width: 300, height: 300 }}
+            style={{ width: 250, height: 250 }}
             borderRadius={10}
-            source={
-              { uri: player.photo }
-            }
+            source={{ uri: player.photo }}
           />
-          <Text>{player.name}</Text>
+          <Card>
+            <CardItem>
+              <Body style={{ alignItems: "center" }}>
+                <Text>{player.name}</Text>
+              </Body>
+            </CardItem>
+          </Card>
         </Animatable.View>
       </TouchableOpacity>
     );

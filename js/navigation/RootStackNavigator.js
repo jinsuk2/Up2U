@@ -27,7 +27,7 @@ const InitStack = createStackNavigator(
 
 const PlayStack = createStackNavigator(
   {
-    Game: GameScreen,
+    Game: GameScreen
   },
   {
     headerMode: "none",
@@ -58,7 +58,7 @@ export default createAppContainer(
       // Onboard: OnboardScreen
     },
     {
-      initialRouteName: "Init"
+      initialRouteName: "Play"
     }
   )
 );

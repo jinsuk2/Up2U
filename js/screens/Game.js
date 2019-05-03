@@ -7,9 +7,11 @@ import { shuffle } from "../helpers";
 import { testUsers } from "../fakeData";
 import * as Progress from "react-native-progress";
 import { sanFranciscoWeights } from "react-native-typography";
-
+import StopWatch from "../components/StopWatch";
+import Icon from "react-native-vector-icons/FontAwesome5";
 export default props => {
-  const players = props.navigation.getParam("players");
+  // const players = props.navigation.getParam("players");
+  const players = testUsers;
   console.log(players);
   const originalUser = JSON.parse(JSON.stringify(players));
   const [users, setUsers] = useState(players);
@@ -33,7 +35,10 @@ export default props => {
     if (users.length == 2) {
       let winner = users[pointer];
       setNewGame(true);
-      props.navigation.navigate("Result", { winner: winner, originalUser: originalUser });
+      props.navigation.navigate("Result", {
+        winner: winner,
+        originalUser: originalUser
+      });
     } else if (users.length <= pointer + 3) {
       setLoading(true);
       setPointer(0);
@@ -52,7 +57,8 @@ export default props => {
     if (users.length == 2) {
       let winner = users[pointer + 1];
       props.navigation.navigate("Result", {
-        winner: winner, originalUser: originalUser
+        winner: winner,
+        originalUser: originalUser
       });
     } else if (users.length <= pointer + 3) {
       setLoading(true);
@@ -87,29 +93,35 @@ export default props => {
       pointerEvents={pressed ? "none" : "auto"}
       style={{ flexDirection: "row", height: "100%" }}
     >
-      <CountDown
-        key={key}
+      <View
         style={{
           position: "absolute",
           left: 0,
           right: 0,
           bottom: "40%",
-          zIndex: 1
+          zIndex: 1,
+          alignItems: "center"
         }}
-        until={5}
-        size={30}
-        onFinish={() => {
-          Vibration.vibrate();
-          setUsers(shuffle(users));
-          setPointer(0);
-          setUserKey(userKey + 1);
-          setKey(key + 1);
-        }}
-        digitStyle={{ backgroundColor: "#FFF" }}
-        digitTxtStyle={{ color: "black", ...sanFranciscoWeights.thin }}
-        timeToShow={["S"]}
-        timeLabels={{ s: "" }}
-      />
+      >
+        <StopWatch />
+
+        <CountDown
+          key={key}
+          until={5}
+          size={30}
+          onFinish={() => {
+            Vibration.vibrate();
+            setUsers(shuffle(users));
+            setPointer(0);
+            setUserKey(userKey + 1);
+            setKey(key + 1);
+          }}
+          digitStyle={{ backgroundColor: "white" }}
+          digitTxtStyle={{ color: "black", ...sanFranciscoWeights.thin }}
+          timeToShow={["S"]}
+          timeLabels={{ s: "" }}
+        />
+      </View>
       <PlayerCard
         pressed={setPressed}
         key={"player" + userKey}
