@@ -11,14 +11,15 @@ import {
   Container
 } from "native-base";
 import Orientation from "react-native-orientation";
+import styles from "./styles";
 
 export default (Name = ({ nav }) => {
   const [playerList, setPlayerList] = useState([]);
   const [currentPlayer, setCurr] = useState("");
 
-  // useEffect(() => {
-  //   Orientation.lockToPortrait();
-  // }, []);
+  useEffect(() => {
+    Orientation.lockToPortrait();
+  }, []);
 
   //This method should push each text into the position
   const addPlayer = () => {
@@ -26,16 +27,40 @@ export default (Name = ({ nav }) => {
       alert("You have reached the maximum number of players!");
     } else if (currentPlayer == "") {
       alert("You need to enter a nickkity name!");
-    } else if (currentPlayer.length <= 3) {
-      alert("4 or more letters plz");
+    } else if (currentPlayer.length <= 2) {
+      alert("3 or more letters plz");
     } else {
       setPlayerList(playerList.concat(currentPlayer));
       setCurr("");
     }
   };
 
+  const toggleInput = () => {
+    if (playerList.length >= 8) {
+      return <Text>Note: You have reached the max. # of players</Text>;
+    } else
+      return (
+        <Input
+          value={currentPlayer}
+          placeholder="Enter A Nickname..."
+          maxLength={20}
+          onChangeText={text => {
+            setCurr(text);
+          }}
+        />
+      );
+  };
+
+  const checkMin = () => {
+    if (playerList.length <= 1) {
+      alert("You need to enter 2 or more players!");
+    } else {
+      nav.navigate("Camera", { playerList: playerList });
+    }
+  };
+
   return (
-    <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
+    <View style={styles.container}>
       {playerList &&
         playerList.map(data => {
           return (
@@ -46,15 +71,23 @@ export default (Name = ({ nav }) => {
             </Card>
           );
         })}
-      <Input
-        value={currentPlayer}
-        placeholder="Enter A Nickname..."
-        maxLength={20}
-        onChangeText={text => {
-          setCurr(text);
+      {toggleInput()}
+      <Button
+        rounded
+        onPress={() => {
+          addPlayer();
         }}
-      />
-
+      >
+        <Text>Submit</Text>
+      </Button>
+      <Button
+        rounded
+        onPress={() => {
+          checkMin();
+        }}
+      >
+        <Text>Camera</Text>
+      </Button>
       {/*For Debug*/}
       {/* <Button
 				rounded
@@ -65,21 +98,6 @@ export default (Name = ({ nav }) => {
 			>
 				<Text>Test Button</Text>
             </Button> */}
-
-      <Button rounded onPress={addPlayer}>
-        <Text>Submit</Text>
-      </Button>
-      <Button
-        rounded
-        onPress={() => {
-          nav.navigate("Camera", { playerList: playerList });
-        }}
-      >
-        <Text>Camera</Text>
-      </Button>
-      {playerList.length >= 8 ? (
-        <Text>Note: You have reached the max. # of players</Text>
-      ) : null}
     </View>
   );
 });

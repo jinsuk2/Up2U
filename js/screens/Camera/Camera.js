@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect } from "reactn";
 import { RNCamera } from "react-native-camera";
 import {
   Text,
@@ -31,7 +31,6 @@ export default ({ nav, playerList }) => {
       }
     ]);
     setCurr(playerList[players.length + 1]);
-    console.log(players.length);
   }
 
   //For Camera Front or Back
@@ -66,11 +65,7 @@ export default ({ nav, playerList }) => {
               players: players
             });
           }
-          if (
-            !snapped
-            // &&
-            // !(playerList.length == players.length)
-          ) {
+          if (!snapped) {
             return (
               <View
                 style={{

@@ -9,8 +9,7 @@ import * as Progress from "react-native-progress";
 import { sanFranciscoWeights } from "react-native-typography";
 import StopWatch from "../components/StopWatch";
 export default props => {
-  // const players = props.navigation.getParam("players");
-  const players = testUsers;
+  const players = props.navigation.getParam("players");
   const originalUser = JSON.parse(JSON.stringify(players));
   const [users, setUsers] = useState(players);
   const [pointer, setPointer] = useState(0);

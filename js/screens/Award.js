@@ -6,7 +6,6 @@ import Orientation from "react-native-orientation";
 export default ({ navigation }) => {
   const winner = navigation.getParam("winner");
   const players = navigation.getParam("players");
-
   const [msg, setMsg] = useState("");
   useEffect(() => {
     Orientation.lockToPortrait();
@@ -22,7 +21,14 @@ export default ({ navigation }) => {
   const firstWinner = Object.keys(winnerMap).reduce((a, b) =>
     winnerMap[a] > winnerMap[b] ? a : b
   );
-  winner.filter(obj => obj.name === firstWinner);
+
+  // const finalPhoto = Object.keys(winner).find(firstWinner, winner).photo;
+  const finalWinner = winner.find(temp => {
+    return temp.name == firstWinner;
+  });
+  console.log(finalWinner);
+  console.log(typeof finalWinner);
+  // winner.filter(obj => obj.name == firstWinner);
   return (
     <View
       style={{
@@ -35,25 +41,24 @@ export default ({ navigation }) => {
         style={{ width: 100, height: 50 }}
         source={require("../../assets/crown.png")}
       />
-      <Text>Final Winner is {winner[0].name}</Text>
+      <Text>Final Winner is {firstWinner}</Text>
       <Input
-        onChangeText={text => {
-          setMsg({ text });
-        }}
+        onChangeText={text => setMsg({ text })}
         value={msg}
         placeholder="Write something to the winner! Congrat him? Make a Request! Leave a comment, be creative!"
       />
       <Image
         style={{ height: 100, width: 80 }}
         borderRadius={100}
-        source={{ uri: winner[0].photo }}
+        source={{ uri: finalWinner.photo }}
       />
       <TouchableOpacity
         disabled={msg ? false : true}
         onPress={() => {
+          console.log(msg);
           navigation.navigate("Reveal", {
             msg: msg.text,
-            winner: winner[0],
+            winner: finalWinner,
             players: players
           });
         }}
