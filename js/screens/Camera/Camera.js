@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "reactn";
+import React, { useState, useEffect } from "react";
 import { RNCamera } from "react-native-camera";
 import {
   Text,

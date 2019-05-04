@@ -53,6 +53,7 @@ export default createAppContainer(
       // OnboardLoading: OnboardLoading,
       Init: InitStack,
       Play: PlayStack,
+
       ResultSwtich: ResultStack
       // TODO:
       // Onboard: OnboardScreen

@@ -34,8 +34,6 @@ export default (Name = ({ nav }) => {
     }
   };
 
-  const addAlert = () => {};
-
   return (
     <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
       {playerList &&
@@ -68,12 +66,7 @@ export default (Name = ({ nav }) => {
 				<Text>Test Button</Text>
             </Button> */}
 
-      <Button
-        rounded
-        onPress={() => {
-          addPlayer();
-        }}
-      >
+      <Button rounded onPress={addPlayer}>
         <Text>Submit</Text>
       </Button>
       <Button

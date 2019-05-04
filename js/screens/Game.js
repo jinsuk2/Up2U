@@ -1,5 +1,5 @@
-import React, { useState, useEffect, getGlobal, useGlobal } from "reactn";
-import { View, Vibration, TouchableOpacity, Text } from "react-native";
+import React, { useState, useEffect } from "react";
+import { View, Vibration, Text } from "react-native";
 import CountDown from "react-native-countdown-component";
 import Orientation from "react-native-orientation";
 import PlayerCard from "../components/PlayerCard";
@@ -8,11 +8,9 @@ import { testUsers } from "../fakeData";
 import * as Progress from "react-native-progress";
 import { sanFranciscoWeights } from "react-native-typography";
 import StopWatch from "../components/StopWatch";
-import Icon from "react-native-vector-icons/FontAwesome5";
 export default props => {
-  const players = props.navigation.getParam("players");
-  // const players = testUsers;
-  console.log(players);
+  // const players = props.navigation.getParam("players");
+  const players = testUsers;
   const originalUser = JSON.parse(JSON.stringify(players));
   const [users, setUsers] = useState(players);
   const [pointer, setPointer] = useState(0);
@@ -28,7 +26,8 @@ export default props => {
       setUsers(originalUser);
       setNewGame(false);
     }
-  }, [users]);
+  }, [key]);
+
   const handleOnPressLeft = () => {
     setKey(key + 1);
     users[pointer + 1].didWin = false;
@@ -73,7 +72,6 @@ export default props => {
     }
   };
 
-  console.log(players);
   if (loading) {
     return (
       <View
@@ -87,57 +85,53 @@ export default props => {
         <Progress.Bar indeterminate={true} width={200} color="black" />
       </View>
     );
-  }
-  return (
-    <View
-      pointerEvents={pressed ? "none" : "auto"}
-      style={{ flexDirection: "row", height: "100%" }}
-    >
+  } else {
+    return (
       <View
-        style={{
-          position: "absolute",
-          left: 0,
-          right: 0,
-          bottom: "40%",
-          zIndex: 1,
-          alignItems: "center"
-        }}
+        pointerEvents={pressed ? "none" : "auto"}
+        style={{ flexDirection: "row", height: "100%" }}
       >
-        <StopWatch index={key} />
-
-        <CountDown
-          key={key}
-          until={5}
-          size={30}
-          onFinish={() => {
-            Vibration.vibrate();
-            setUsers(shuffle(users));
-            setPointer(0);
-            setUserKey(userKey + 1);
-            setKey(key + 1);
+        <View
+          style={{
+            position: "absolute",
+            left: 0,
+            right: 0,
+            bottom: "40%",
+            zIndex: 1,
+            alignItems: "center"
           }}
-          digitStyle={{ backgroundColor: "white" }}
-          digitTxtStyle={{ color: "black", ...sanFranciscoWeights.thin }}
-          timeToShow={["S"]}
-          timeLabels={{ s: "" }}
+        >
+          <StopWatch index={key} />
+          <CountDown
+            key={key}
+            until={5}
+            size={30}
+            onFinish={() => {
+              Vibration.vibrate();
+              setUsers(shuffle(users));
+              setPointer(0);
+              setUserKey(userKey + 1);
+              setKey(key + 1);
+            }}
+            digitStyle={{ backgroundColor: "white" }}
+            digitTxtStyle={{ color: "black", ...sanFranciscoWeights.thin }}
+            timeToShow={["S"]}
+            timeLabels={{ s: "" }}
+          />
+        </View>
+        <PlayerCard
+          pressed={setPressed}
+          key={"player" + userKey}
+          player={users[pointer]}
+          onPress={handleOnPressLeft}
+        />
+        <PlayerCard
+          pressed={setPressed}
+          key={"player" + userKey + 1}
+          player={users[pointer + 1]}
+          onPress={handleOnPressRight}
         />
       </View>
-      <PlayerCard
-        pressed={setPressed}
-        key={"player" + userKey}
-        player={users[pointer]}
-        onPress={() => {
-          handleOnPressLeft();
-        }}
-      />
-      <PlayerCard
-        pressed={setPressed}
-        key={"player" + userKey + 1}
-        player={users[pointer + 1]}
-        onPress={() => {
-          handleOnPressRight();
-        }}
-      />
-    </View>
-  );
+    );
+  }
 };

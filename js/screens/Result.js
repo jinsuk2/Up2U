@@ -6,12 +6,8 @@ import React, {
   getGlobal
 } from "reactn";
 import { View, Text, Image, TouchableOpacity } from "react-native";
-import Orientation from "react-native-orientation";
 
 export default ({ navigation }) => {
-  useEffect(() => {
-    Orientation.lockToLandscape();
-  }, []);
   const winner = navigation.getParam("winner");
   const players = navigation.getParam("originalUser");
   const [winnerList, setWinnerList] = useGlobal("winnerList");
@@ -45,21 +41,17 @@ export default ({ navigation }) => {
       </TouchableOpacity>
       <TouchableOpacity
         onPress={() => {
-          setGlobal({ winnerList: [...winnerList, winner] });
-          console.log(getGlobal().winnerList);
+          setGlobal({ winnerList: [...winnerList, winner] }).then;
+          const globalVar = getGlobal();
+          console.log(globalVar);
           navigation.navigate("Award", {
-            winner: getGlobal().winnerList,
+            winner: globalVar.winnerList,
             players: players
           });
         }}
       >
         <Text>Done</Text>
       </TouchableOpacity>
-      {/* For Debug */}
-      {/* <TouchableOpacity onPress={()=>{
-        console.log(winner.photo)
-      }}><Text>Debug Button</Text>
-      </TouchableOpacity> */}
     </View>
   );
 };

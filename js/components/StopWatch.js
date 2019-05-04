@@ -9,7 +9,6 @@ export default class StopWatch extends Component {
 
   componentDidMount() {
     this.interval = setInterval(() => {
-      console.log("shaking");
       this.view.shake(300);
     }, 1000);
   }

@@ -7,9 +7,15 @@ export default class PlayerCard extends Component {
   constructor(props) {
     super(props);
   }
-
+  movement = () => {
+    setTimeout(() => {
+      this.props.pressed(false);
+    }, 1000);
+  };
   handleViewRef = ref => (this.view = ref);
-
+  componentWillUnmount() {
+    clearTimeout(this.movement);
+  }
   render() {
     let { player, onPress } = this.props;
     player = player || { name: "loading", photo: "null" };
@@ -21,11 +27,9 @@ export default class PlayerCard extends Component {
           this.view.tada(600).then(() => {
             onPress();
           });
+          this.movement();
 
           Vibration.vibrate();
-          setTimeout(() => {
-            this.props.pressed(false);
-          }, 1000);
         }}
         style={{
           height: "100%",

@@ -6,7 +6,7 @@ import Orientation from "react-native-orientation";
 export default ({ navigation }) => {
   const winner = navigation.getParam("winner");
   const players = navigation.getParam("players");
-  console.log(winner);
+
   const [msg, setMsg] = useState("");
   useEffect(() => {
     Orientation.lockToPortrait();
@@ -37,7 +37,9 @@ export default ({ navigation }) => {
       />
       <Text>Final Winner is {winner[0].name}</Text>
       <Input
-        onChangeText={text => setMsg({ text })}
+        onChangeText={text => {
+          setMsg({ text });
+        }}
         value={msg}
         placeholder="Write something to the winner! Congrat him? Make a Request! Leave a comment, be creative!"
       />
@@ -49,7 +51,6 @@ export default ({ navigation }) => {
       <TouchableOpacity
         disabled={msg ? false : true}
         onPress={() => {
-          console.log(msg);
           navigation.navigate("Reveal", {
             msg: msg.text,
             winner: winner[0],
