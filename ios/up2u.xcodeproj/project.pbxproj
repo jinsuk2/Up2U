@@ -63,6 +63,7 @@
 		0E6361DB69744812881F845C /* Octicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D05C8EF242D54143B4CE6A9F /* Octicons.ttf */; };
 		2CEA0B8913CD4019B90000B5 /* SimpleLineIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FABB567B32654E9A91553186 /* SimpleLineIcons.ttf */; };
 		F743EDDF743A4E5B8BE1F7D2 /* Zocial.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 01A0783F7C2340F7A454D9FE /* Zocial.ttf */; };
+		48C3DEC872BE4D179A209FC0 /* Damion-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5EB97F6ED5E3468DB0F53D2B /* Damion-Regular.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -463,6 +464,7 @@
 		D05C8EF242D54143B4CE6A9F /* Octicons.ttf */ = {isa = PBXFileReference; name = "Octicons.ttf"; path = "../node_modules/native-base/Fonts/Octicons.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 		FABB567B32654E9A91553186 /* SimpleLineIcons.ttf */ = {isa = PBXFileReference; name = "SimpleLineIcons.ttf"; path = "../node_modules/native-base/Fonts/SimpleLineIcons.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 		01A0783F7C2340F7A454D9FE /* Zocial.ttf */ = {isa = PBXFileReference; name = "Zocial.ttf"; path = "../node_modules/native-base/Fonts/Zocial.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		5EB97F6ED5E3468DB0F53D2B /* Damion-Regular.ttf */ = {isa = PBXFileReference; name = "Damion-Regular.ttf"; path = "../assets/Damion/Damion-Regular.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -756,6 +758,7 @@
 				D05C8EF242D54143B4CE6A9F /* Octicons.ttf */,
 				FABB567B32654E9A91553186 /* SimpleLineIcons.ttf */,
 				01A0783F7C2340F7A454D9FE /* Zocial.ttf */,
+				5EB97F6ED5E3468DB0F53D2B /* Damion-Regular.ttf */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -1398,6 +1401,7 @@
 				0E6361DB69744812881F845C /* Octicons.ttf in Resources */,
 				2CEA0B8913CD4019B90000B5 /* SimpleLineIcons.ttf in Resources */,
 				F743EDDF743A4E5B8BE1F7D2 /* Zocial.ttf in Resources */,
+				48C3DEC872BE4D179A209FC0 /* Damion-Regular.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

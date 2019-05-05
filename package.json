@@ -7,6 +7,11 @@
     "test": "jest",
     "emu": "cd C:/Users/Jinsu/AppData/Local/Android/Sdk/emulator && emulator -avd emu"
   },
+  "rnpm": {
+    "assets": [
+      "./assets/Damion/"
+    ]
+  },
   "dependencies": {
     "native-base": "^2.12.1",
     "react": "16.8.3",
