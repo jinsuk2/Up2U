@@ -3,6 +3,7 @@ import { TouchableOpacity, Image, Text, Vibration } from "react-native";
 import * as Animatable from "react-native-animatable";
 import { Container, Header, Content, Card, CardItem, Body } from "native-base";
 import Icon from "react-native-vector-icons/FontAwesome5";
+import NeonSign from "./NeonSign";
 export default class PlayerCard extends Component {
   constructor(props) {
     super(props);
@@ -43,19 +44,15 @@ export default class PlayerCard extends Component {
           key={player.name}
           animation="bounceInDown"
           ref={this.handleViewRef}
+          style={{ alignItems: "center" }}
         >
           <Image
             style={{ width: 250, height: 250 }}
             borderRadius={10}
             source={{ uri: player.photo }}
           />
-          <Card>
-            <CardItem>
-              <Body style={{ alignItems: "center" }}>
-                <Text>{player.name}</Text>
-              </Body>
-            </CardItem>
-          </Card>
+
+          <NeonSign size={30} name={player.name} />
         </Animatable.View>
       </TouchableOpacity>
     );

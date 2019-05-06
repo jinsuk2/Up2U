@@ -8,6 +8,7 @@ import { testUsers } from "../fakeData";
 import * as Progress from "react-native-progress";
 import { sanFranciscoWeights } from "react-native-typography";
 import StopWatch from "../components/StopWatch";
+import NeonSign from "../components/NeonSign";
 export default props => {
   const players = props.navigation.getParam("players");
   const originalUser = JSON.parse(JSON.stringify(players));
@@ -121,21 +122,19 @@ export default props => {
                 setUserKey(userKey + 1);
                 setKey(key + 1);
               }}
-              digitStyle={{ backgroundColor: "white" }}
+              digitStyle={{ backgroundColor: "#00000000" }}
               digitTxtStyle={{ color: "black", ...sanFranciscoWeights.thin }}
               timeToShow={["S"]}
               timeLabels={{ s: "" }}
             />
           </View>
           <PlayerCard
-            style={{ backgroundColor: "#00000000" }}
             pressed={setPressed}
             key={"player" + userKey}
             player={users[pointer]}
             onPress={handleOnPressLeft}
           />
           <PlayerCard
-            style={{ backgroundColor: "#00000000" }}
             pressed={setPressed}
             key={"player" + userKey + 1}
             player={users[pointer + 1]}
