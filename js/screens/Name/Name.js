@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Input } from "react-native-elements";
-import { View } from "react-native";
+import { View, ImageBackground } from "react-native";
 import {
   Button,
   Card,
@@ -12,6 +12,7 @@ import {
 } from "native-base";
 import Orientation from "react-native-orientation";
 import styles from "./styles";
+import NeonSign from "../../components/NeonSign";
 
 export default (Name = ({ nav }) => {
   const [playerList, setPlayerList] = useState([]);
@@ -60,36 +61,38 @@ export default (Name = ({ nav }) => {
   };
 
   return (
-    <View style={styles.container}>
-      {playerList &&
-        playerList.map(data => {
-          return (
-            <Card>
-              <CardItem>
-                <Text>{data}</Text>
-              </CardItem>
-            </Card>
-          );
-        })}
-      {toggleInput()}
-      <Button
-        rounded
-        onPress={() => {
-          addPlayer();
-        }}
-      >
-        <Text>Submit</Text>
-      </Button>
-      <Button
-        rounded
-        onPress={() => {
-          checkMin();
-        }}
-      >
-        <Text>Camera</Text>
-      </Button>
-      {/*For Debug*/}
-      {/* <Button
+    <ImageBackground
+      source={require("../../../assets/wallbg.jpg")}
+      style={{ width: "100%", height: "100%" }}
+    >
+      <View style={styles.container}>
+        {playerList &&
+          playerList.map(data => {
+            return (
+              <Card>
+                <CardItem>
+                  <Text>{data}</Text>
+                </CardItem>
+              </Card>
+            );
+          })}
+        {toggleInput()}
+
+        <NeonSign
+          name="Submit"
+          onPress={() => {
+            addPlayer();
+          }}
+        />
+        <NeonSign
+          name="Camera"
+          onPress={() => {
+            checkMin();
+          }}
+        />
+
+        {/*For Debug*/}
+        {/* <Button
 				rounded
 				onPress={() => {
 					console.log(playerList);
@@ -98,6 +101,7 @@ export default (Name = ({ nav }) => {
 			>
 				<Text>Test Button</Text>
             </Button> */}
-    </View>
+      </View>
+    </ImageBackground>
   );
 });
