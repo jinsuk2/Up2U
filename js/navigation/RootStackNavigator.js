@@ -20,6 +20,11 @@ const InitStack = createStackNavigator(
     Ready: ReadyScreen
   },
   {
+    transitionConfig: () => ({
+      transitionSpec: {
+        duration: 0
+      }
+    }),
     headerMode: "none",
     initialRouteName: "Home"
   }
@@ -59,6 +64,11 @@ export default createAppContainer(
       // Onboard: OnboardScreen
     },
     {
+      transitionConfig: () => ({
+        transitionSpec: {
+          duration: 0 // Set the animation duration time as 0 !!
+        }
+      }),
       initialRouteName: "Init"
     }
   )

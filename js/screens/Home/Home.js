@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { View, Text, Button } from "native-base";
 import styles from "./styles";
+import * as Animatable from "react-native-animatable";
 import Orientation from "react-native-orientation";
 import { StyleSheet, ImageBackground } from "react-native";
 import RNFS from "react-native-fs";
@@ -63,7 +64,9 @@ export default ({ nav }) => {
       style={{ width: "100%", height: "100%" }}
     >
       <View style={styles.container}>
-        <NeonSign name={"Start"} onPress={() => nav.navigate("Name")} />
+        <Animatable.View animation="flash">
+          <NeonSign name={"Start"} onPress={() => nav.navigate("Name")} />
+        </Animatable.View>
       </View>
     </ImageBackground>
   );

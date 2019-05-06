@@ -6,8 +6,8 @@ const style = StyleSheet.create({
   logo: {
     fontFamily: "Damion",
     fontSize: 70,
-    color: "#fee",
-    shadowColor: "#ff4444",
+    color: "#efffee",
+    shadowColor: "#44ff47",
     shadowOpacity: 0.8,
     shadowRadius: 7,
     shadowOffset: {
@@ -16,7 +16,7 @@ const style = StyleSheet.create({
     }
   },
   logo2: {
-    shadowColor: "#ff4444",
+    shadowColor: "#44ff47",
     shadowOpacity: 0.8,
     shadowRadius: 0.1,
     shadowOffset: {
@@ -25,7 +25,7 @@ const style = StyleSheet.create({
     }
   },
   logo5: {
-    shadowColor: "#ff4444",
+    shadowColor: "#44ff47",
 
     shadowOpacity: 0.8,
     shadowRadius: 0.5,
@@ -44,14 +44,14 @@ const style = StyleSheet.create({
     }
   }
 });
-export default ({ name, onPress }) => {
+export default ({ name, onPress, children, size = 70 }) => {
   return (
-    <TouchableOpacity style={{ padding: 20 }} onPress={onPress}>
+    <TouchableOpacity style={{ padding: 40 }} onPress={onPress}>
       <View style={style.logo3}>
         <View style={style.logo2}>
           <View style={style.logo5}>
-            <BlinkView blinking delay={40} />
-            <Text style={style.logo}>{name}</Text>
+            <Text style={{ ...style.logo, fontSize: size }}>{name} </Text>
+            {children}
           </View>
         </View>
       </View>
