@@ -80,12 +80,13 @@ export default (Name = ({ nav }) => {
 
         <NeonSign
           name="Submit"
+          size={25}
           onPress={() => {
             addPlayer();
           }}
         />
         <NeonSign
-          name="Camera"
+          name="Finished"
           onPress={() => {
             checkMin();
           }}

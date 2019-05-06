@@ -20,7 +20,9 @@ export default class StopWatch extends Component {
   render() {
     return (
       <Animatable.View ref={this.handleViewRef}>
-        <Icon name="stopwatch" size={30} color="black" />
+        <NeonSign onPress={() => {}}>
+          <Icon name="stopwatch" size={30} color="white" />
+        </NeonSign>
       </Animatable.View>
     );
   }
