@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
+import BlinkView from "react-native-blink-view";
 
 const style = StyleSheet.create({
   logo: {
@@ -8,7 +9,7 @@ const style = StyleSheet.create({
     color: "#fee",
     shadowColor: "#ff4444",
     shadowOpacity: 0.8,
-    shadowRadius: 2,
+    shadowRadius: 7,
     shadowOffset: {
       height: 0,
       width: 0
@@ -18,6 +19,16 @@ const style = StyleSheet.create({
     shadowColor: "#ff4444",
     shadowOpacity: 0.8,
     shadowRadius: 0.1,
+    shadowOffset: {
+      height: 0,
+      width: 0
+    }
+  },
+  logo5: {
+    shadowColor: "#ff4444",
+
+    shadowOpacity: 0.8,
+    shadowRadius: 0.5,
     shadowOffset: {
       height: 0,
       width: 0
@@ -38,7 +49,10 @@ export default ({ name, onPress }) => {
     <TouchableOpacity style={{ padding: 20 }} onPress={onPress}>
       <View style={style.logo3}>
         <View style={style.logo2}>
-          <Text style={style.logo}>{name}</Text>
+          <View style={style.logo5}>
+            <BlinkView blinking delay={40} />
+            <Text style={style.logo}>{name}</Text>
+          </View>
         </View>
       </View>
     </TouchableOpacity>

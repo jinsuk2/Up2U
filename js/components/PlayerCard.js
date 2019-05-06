@@ -34,7 +34,7 @@ export default class PlayerCard extends Component {
         style={{
           height: "100%",
           width: "50%",
-          backgroundColor: "white",
+          backgroundColor: "#00000000",
           justifyContent: "center",
           alignItems: "center"
         }}

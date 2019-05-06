@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { View, Vibration, Text } from "react-native";
+import { View, Vibration, Text, ImageBackground } from "react-native";
 import CountDown from "react-native-countdown-component";
 import Orientation from "react-native-orientation";
 import PlayerCard from "../components/PlayerCard";
@@ -86,51 +86,63 @@ export default props => {
     );
   } else {
     return (
-      <View
-        pointerEvents={pressed ? "none" : "auto"}
-        style={{ flexDirection: "row", height: "100%" }}
+      <ImageBackground
+        source={require("../../assets/wallbg.jpg")}
+        style={{ width: "100%", height: "100%" }}
       >
         <View
+          pointerEvents={pressed ? "none" : "auto"}
           style={{
-            position: "absolute",
-            left: 0,
-            right: 0,
-            bottom: "40%",
-            zIndex: 1,
-            alignItems: "center"
+            backgroundColor: "#00000000",
+            flexDirection: "row",
+            height: "100%"
           }}
         >
-          <StopWatch index={key} />
-          <CountDown
-            key={key}
-            until={5}
-            size={30}
-            onFinish={() => {
-              Vibration.vibrate();
-              setUsers(shuffle(users));
-              setPointer(0);
-              setUserKey(userKey + 1);
-              setKey(key + 1);
+          <View
+            style={{
+              backgroundColor: "#00000000",
+              position: "absolute",
+              left: 0,
+              right: 0,
+              bottom: "40%",
+              zIndex: 1,
+              alignItems: "center"
             }}
-            digitStyle={{ backgroundColor: "white" }}
-            digitTxtStyle={{ color: "black", ...sanFranciscoWeights.thin }}
-            timeToShow={["S"]}
-            timeLabels={{ s: "" }}
+          >
+            <StopWatch index={key} />
+            <CountDown
+              key={key}
+              until={5}
+              size={30}
+              onFinish={() => {
+                Vibration.vibrate();
+                setUsers(shuffle(users));
+                setPointer(0);
+                setUserKey(userKey + 1);
+                setKey(key + 1);
+              }}
+              digitStyle={{ backgroundColor: "white" }}
+              digitTxtStyle={{ color: "black", ...sanFranciscoWeights.thin }}
+              timeToShow={["S"]}
+              timeLabels={{ s: "" }}
+            />
+          </View>
+          <PlayerCard
+            style={{ backgroundColor: "#00000000" }}
+            pressed={setPressed}
+            key={"player" + userKey}
+            player={users[pointer]}
+            onPress={handleOnPressLeft}
+          />
+          <PlayerCard
+            style={{ backgroundColor: "#00000000" }}
+            pressed={setPressed}
+            key={"player" + userKey + 1}
+            player={users[pointer + 1]}
+            onPress={handleOnPressRight}
           />
         </View>
-        <PlayerCard
-          pressed={setPressed}
-          key={"player" + userKey}
-          player={users[pointer]}
-          onPress={handleOnPressLeft}
-        />
-        <PlayerCard
-          pressed={setPressed}
-          key={"player" + userKey + 1}
-          player={users[pointer + 1]}
-          onPress={handleOnPressRight}
-        />
-      </View>
+      </ImageBackground>
     );
   }
 };
