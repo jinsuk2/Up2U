@@ -20,11 +20,6 @@ const InitStack = createStackNavigator(
     Ready: ReadyScreen
   },
   {
-    transitionConfig: () => ({
-      transitionSpec: {
-        duration: 0
-      }
-    }),
     headerMode: "none",
     initialRouteName: "Home"
   }

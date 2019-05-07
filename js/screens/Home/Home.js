@@ -55,6 +55,22 @@ const style = StyleSheet.create({
 });
 
 export default ({ nav }) => {
+<<<<<<< HEAD
+  useEffect(() => {
+    Orientation.lockToPortrait();
+  }, []);
+  return (
+    <View style={styles.container}>
+      <Animatable.View animation="flash">
+        <NeonSign
+          size={80}
+          name={"Start"}
+          onPress={() => nav.navigate("Name")}
+        />
+      </Animatable.View>
+    </View>
+  );
+=======
 	useEffect(() => {
 		Orientation.lockToPortrait();
 	}, []);
@@ -67,4 +83,5 @@ export default ({ nav }) => {
 			</View>
 		</ImageBackground>
 	);
+>>>>>>> master
 };
