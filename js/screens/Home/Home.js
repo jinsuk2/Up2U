@@ -59,15 +59,14 @@ export default ({ nav }) => {
     Orientation.lockToPortrait();
   }, []);
   return (
-    <ImageBackground
-      source={require("../../../assets/wallbg.jpg")}
-      style={{ width: "100%", height: "100%" }}
-    >
-      <View style={styles.container}>
-        <Animatable.View animation="flash">
-          <NeonSign name={"Start"} onPress={() => nav.navigate("Name")} />
-        </Animatable.View>
-      </View>
-    </ImageBackground>
+    <View style={styles.container}>
+      <Animatable.View animation="flash">
+        <NeonSign
+          size={80}
+          name={"Start"}
+          onPress={() => nav.navigate("Name")}
+        />
+      </Animatable.View>
+    </View>
   );
 };

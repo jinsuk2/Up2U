@@ -45,7 +45,7 @@ const style = StyleSheet.create({
 });
 export default ({ name, onPress, children, size = 70 }) => {
   return (
-    <TouchableOpacity style={{ padding: 40 }} onPress={onPress}>
+    <TouchableOpacity style={{ padding: 10 }} onPress={onPress}>
       <View style={style.logo3}>
         <View style={style.logo2}>
           <View style={style.logo5}>

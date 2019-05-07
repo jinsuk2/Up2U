@@ -31,37 +31,66 @@ export default ({ navigation }) => {
     >
       <View
         style={{
+          flex: 1,
           justifyContent: "center",
           alignItems: "center"
         }}
       >
         <NeonIcon color={"#ffe"} name={"crown"} />
+        <View style={{ flexDirection: "row" }}>
+          <View
+            className="left"
+            style={{
+              width: "50%",
+              flex: 1,
+              justifyContent: "center",
+              alignItems: "center"
+            }}
+          >
+            <Image
+              borderRadius={5}
+              style={{
+                width: 250,
+                height: 250,
+                shadowColor: "#000",
+                shadowOpacity: 0.8,
+                shadowRadius: 5,
+                shadowOffset: {
+                  height: 0,
+                  width: 10
+                }
+              }}
+              source={{ uri: winner.photo }}
+            />
+          </View>
+          <View className="right" style={{ width: "50%" }}>
+            <NeonSign
+              onPress={() => {}}
+              size={30}
+              name={`you've picked ${winner.name}`}
+            />
 
-        <Image
-          borderRadius={100}
-          style={{ width: 100, height: 50 }}
-          source={{ uri: winner.photo }}
-        />
-
-        <NeonSign
-          onPress={() => {
-            setGlobal({ winnerList: [...winnerList, winner] });
-            navigation.navigate("Game", { players: players });
-          }}
-          size={30}
-          name={"One More?"}
-        />
-        <NeonSign
-          size={30}
-          onPress={() => {
-            setGlobal({ winnerList: [...winnerList, winner] });
-            navigation.navigate("Award", {
-              winner: getGlobal().winnerList,
-              players: players
-            });
-          }}
-          name={"Done"}
-        />
+            <NeonSign
+              onPress={() => {
+                setGlobal({ winnerList: [...winnerList, winner] });
+                navigation.navigate("Game", { players: players });
+              }}
+              size={30}
+              name={"One More?"}
+            />
+            <NeonSign
+              size={30}
+              onPress={() => {
+                setGlobal({ winnerList: [...winnerList, winner] });
+                navigation.navigate("Award", {
+                  winner: getGlobal().winnerList,
+                  players: players
+                });
+              }}
+              name={"Done"}
+            />
+          </View>
+        </View>
       </View>
     </ImageBackground>
   );
