@@ -5,9 +5,17 @@ import React, {
   setGlobal,
   getGlobal
 } from "reactn";
-import { View, Text, Image, TouchableOpacity } from "react-native";
+import {
+  View,
+  Text,
+  Image,
+  TouchableOpacity,
+  ImageBackground
+} from "react-native";
 import Orientation from "react-native-orientation";
-
+import Icon from "react-native-vector-icons/FontAwesome5";
+import NeonSign from "../components/NeonSign";
+import NeonIcon from "../components/NeonIcon";
 export default ({ navigation }) => {
   useEffect(() => {
     Orientation.lockToLandscape();
@@ -17,48 +25,44 @@ export default ({ navigation }) => {
   const [winnerList, setWinnerList] = useGlobal("winnerList");
 
   return (
-    <View
-      style={{
-        padding: 20,
-        justifyContent: "center",
-        alignItems: "center"
-      }}
+    <ImageBackground
+      source={require("../../assets/wallbg.jpg")}
+      style={{ width: "100%", height: "100%" }}
     >
-      <Image
-        style={{ width: 100, height: 50 }}
-        source={require("../../assets/crown.png")}
-      />
-      <Text>Winner is {winner.name}</Text>
+      <View
+        style={{
+          justifyContent: "center",
+          alignItems: "center"
+        }}
+      >
+        <NeonIcon color={"#ffe"} name={"crown"} />
 
-      <Image
-        borderRadius={100}
-        style={{ width: 100, height: 50 }}
-        source={{ uri: winner.photo }}
-      />
-      <TouchableOpacity
-        onPress={() => {
-          setGlobal({ winnerList: [...winnerList, winner] });
-          navigation.navigate("Game", { players: players });
-        }}
-      >
-        <Text>One more?</Text>
-      </TouchableOpacity>
-      <TouchableOpacity
-        onPress={() => {
-          setGlobal({ winnerList: [...winnerList, winner] });
-          navigation.navigate("Award", {
-            winner: getGlobal().winnerList,
-            players: players
-          });
-        }}
-      >
-        <Text>Done</Text>
-      </TouchableOpacity>
-      {/* For Debug */}
-      {/* <TouchableOpacity onPress={()=>{
-        console.log(winner.photo)
-      }}><Text>Debug Button</Text>
-      </TouchableOpacity> */}
-    </View>
+        <Image
+          borderRadius={100}
+          style={{ width: 100, height: 50 }}
+          source={{ uri: winner.photo }}
+        />
+
+        <NeonSign
+          onPress={() => {
+            setGlobal({ winnerList: [...winnerList, winner] });
+            navigation.navigate("Game", { players: players });
+          }}
+          size={30}
+          name={"One More?"}
+        />
+        <NeonSign
+          size={30}
+          onPress={() => {
+            setGlobal({ winnerList: [...winnerList, winner] });
+            navigation.navigate("Award", {
+              winner: getGlobal().winnerList,
+              players: players
+            });
+          }}
+          name={"Done"}
+        />
+      </View>
+    </ImageBackground>
   );
 };

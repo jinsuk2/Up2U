@@ -1,7 +1,15 @@
 import React, { useEffect, useState } from "react";
-import { View, Text, Image, TouchableOpacity } from "react-native";
+import {
+  View,
+  Text,
+  Image,
+  TouchableOpacity,
+  ImageBackground
+} from "react-native";
 import { Input } from "react-native-elements";
 import Orientation from "react-native-orientation";
+import NeonIcon from "../components/NeonIcon";
+import NeonSign from "../components/NeonSign";
 
 export default ({ navigation }) => {
   const winner = navigation.getParam("winner");
@@ -22,7 +30,6 @@ export default ({ navigation }) => {
     winnerMap[a] > winnerMap[b] ? a : b
   );
 
-  // const finalPhoto = Object.keys(winner).find(firstWinner, winner).photo;
   const finalWinner = winner.find(temp => {
     return temp.name == firstWinner;
   });
@@ -30,41 +37,48 @@ export default ({ navigation }) => {
   console.log(typeof finalWinner);
   // winner.filter(obj => obj.name == firstWinner);
   return (
-    <View
-      style={{
-        padding: 20,
-        justifyContent: "center",
-        alignItems: "center"
-      }}
+    <ImageBackground
+      source={require("../../assets/wallbg.jpg")}
+      style={{ width: "100%", height: "100%" }}
     >
-      <Image
-        style={{ width: 100, height: 50 }}
-        source={require("../../assets/crown.png")}
-      />
-      <Text>Final Winner is {firstWinner}</Text>
-      <Input
-        onChangeText={text => setMsg({ text })}
-        value={msg}
-        placeholder="Write something to the winner! Congrat him? Make a Request! Leave a comment, be creative!"
-      />
-      <Image
-        style={{ height: 100, width: 80 }}
-        borderRadius={100}
-        source={{ uri: finalWinner.photo }}
-      />
-      <TouchableOpacity
-        disabled={msg ? false : true}
-        onPress={() => {
-          console.log(msg);
-          navigation.navigate("Reveal", {
-            msg: msg.text,
-            winner: finalWinner,
-            players: players
-          });
+      <View
+        style={{
+          paddingTop: 100,
+          justifyContent: "center",
+          alignItems: "center"
         }}
       >
-        <Text>Click to send</Text>
-      </TouchableOpacity>
-    </View>
+        <NeonIcon name={"crown"} />
+
+        {/* <Text>Final Winner is {firstWinner}</Text> */}
+        <NeonSign size={30} name={`Final Winner is ${firstWinner}`} />
+
+        <Input
+          onChangeText={text => setMsg({ text })}
+          value={msg}
+          placeholder="Write something to the winner! Congrat him? Make a Request! Leave a comment, be creative!"
+        />
+        {/* <Image
+          style={{ height: 100, width: 80 }}
+          borderRadius={100}
+          source={{ uri: finalWinner.photo }}
+        /> */}
+        <NeonSign
+          size={20}
+          onPress={() => {
+            console.log(msg);
+            navigation.navigate("Reveal", {
+              msg: msg.text,
+              winner: finalWinner,
+              players: players
+            });
+          }}
+          name={"Click to send"}
+        />
+        {/* <TouchableOpacity disabled={msg ? false : true}>
+          <Text>Click to send</Text>
+        </TouchableOpacity> */}
+      </View>
+    </ImageBackground>
   );
 };
