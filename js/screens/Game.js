@@ -4,11 +4,9 @@ import CountDown from "react-native-countdown-component";
 import Orientation from "react-native-orientation";
 import PlayerCard from "../components/PlayerCard";
 import { shuffle } from "../helpers";
-import { testUsers } from "../fakeData";
 import * as Progress from "react-native-progress";
-import { sanFranciscoWeights } from "react-native-typography";
+import { systemWeights } from "react-native-typography";
 import StopWatch from "../components/StopWatch";
-import NeonSign from "../components/NeonSign";
 export default props => {
   const players = props.navigation.getParam("players");
   const originalUser = JSON.parse(JSON.stringify(players));
@@ -114,7 +112,7 @@ export default props => {
             <CountDown
               key={key}
               until={5}
-              size={30}
+              size={45}
               onFinish={() => {
                 Vibration.vibrate();
                 setUsers(shuffle(users));
@@ -123,7 +121,20 @@ export default props => {
                 setKey(key + 1);
               }}
               digitStyle={{ backgroundColor: "#00000000" }}
-              digitTxtStyle={{ color: "black", ...sanFranciscoWeights.thin }}
+              digitTxtStyle={{
+                color: "white",
+                ...systemWeights.bold,
+                fontFamily: "Damion",
+                fontSize: 70,
+                color: "#efffee",
+                shadowColor: "white",
+                shadowOpacity: 0.8,
+                shadowRadius: 7,
+                shadowOffset: {
+                  height: 0,
+                  width: 0
+                }
+              }}
               timeToShow={["S"]}
               timeLabels={{ s: "" }}
             />

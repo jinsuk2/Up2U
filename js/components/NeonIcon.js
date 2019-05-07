@@ -1,12 +1,12 @@
 import React from "react";
 import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
-
+import Icon from "react-native-vector-icons/FontAwesome5";
 const style = StyleSheet.create({
   logo: {
     fontFamily: "Damion",
     fontSize: 70,
-    color: "#efffee",
-    shadowColor: "#44ff47",
+    color: "#ffe",
+    shadowColor: "#f4ff44",
     shadowOpacity: 0.8,
     shadowRadius: 7,
     shadowOffset: {
@@ -15,7 +15,7 @@ const style = StyleSheet.create({
     }
   },
   logo2: {
-    shadowColor: "#44ff47",
+    shadowColor: "#f4ff44",
     shadowOpacity: 0.8,
     shadowRadius: 0.1,
     shadowOffset: {
@@ -24,7 +24,7 @@ const style = StyleSheet.create({
     }
   },
   logo5: {
-    shadowColor: "#44ff47",
+    shadowColor: "#f4ff44",
 
     shadowOpacity: 0.8,
     shadowRadius: 0.5,
@@ -43,17 +43,16 @@ const style = StyleSheet.create({
     }
   }
 });
-export default ({ name, onPress, children, size = 70 }) => {
+
+export default ({ name, children, size = 70, color }) => {
   return (
-    <TouchableOpacity style={{ padding: 40 }} onPress={onPress}>
-      <View style={style.logo3}>
-        <View style={style.logo2}>
-          <View style={style.logo5}>
-            <Text style={{ ...style.logo, fontSize: size }}>{name} </Text>
-            {children}
-          </View>
+    <View style={style.logo3}>
+      <View style={style.logo2}>
+        <View style={style.logo5}>
+          <Icon style={{ ...style.logo, fontSize: size, color }} name={name} />
+          {children}
         </View>
       </View>
-    </TouchableOpacity>
+    </View>
   );
 };
