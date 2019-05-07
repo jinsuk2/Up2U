@@ -59,7 +59,7 @@ export default createAppContainer(
       // Test: ReadyScreen,
       Init: InitStack,
       Play: PlayStack,
-      ResultSwtich: ResultStack
+      ResultSwitch: ResultStack
       // TODO:
       // Onboard: OnboardScreen
     },

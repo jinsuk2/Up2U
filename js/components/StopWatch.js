@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import * as Animatable from "react-native-animatable";
 import Icon from "react-native-vector-icons/FontAwesome5";
 import NeonSign from "../components/NeonSign";
+import NeonIcon from "./NeonIcon";
 export default class StopWatch extends Component {
   constructor(props) {
     super(props);
@@ -20,9 +21,12 @@ export default class StopWatch extends Component {
   render() {
     return (
       <Animatable.View ref={this.handleViewRef}>
-        <NeonSign onPress={() => {}}>
-          <Icon name="stopwatch" size={30} color="white" />
-        </NeonSign>
+        <NeonIcon
+          color={"white"}
+          size={20}
+          name="stopwatch"
+          onPress={() => {}}
+        />
       </Animatable.View>
     );
   }
