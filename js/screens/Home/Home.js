@@ -9,7 +9,7 @@ import { TouchableOpacity } from 'react-native-gesture-handler';
 import NeonSign from '../../components/NeonSign';
 const style = StyleSheet.create({
 	logo: {
-		fontFamily: 'Damion',
+		fontFamily: '../../assets/Damion/Damion-Regular.ttf',
 		fontSize: 80,
 		color: '#fee',
 		shadowColor: '#ff4444',
@@ -62,7 +62,7 @@ export default ({ nav }) => {
 		<ImageBackground source={require('../../../assets/wallbg.jpg')} style={{ width: '100%', height: '100%' }}>
 			<View style={styles.container}>
 				<Animatable.View animation="flash">
-					<NeonSign name={'Start'} sonPress={() => nav.navigate('Name')} />
+					<NeonSign name={'Start'} onPress={() => nav.navigate('Name')} />
 				</Animatable.View>
 			</View>
 		</ImageBackground>
