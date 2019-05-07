@@ -104,7 +104,7 @@ export default ({ name, onPress, children, size = 70 }) => {
 						<Text
 							style={{
 								fontFamily: 'Damion-Regular',
-								fontSize: 100,
+								fontSize: size,
 								color: '#BCED91',
 								textShadowColor: '#44ff47',
 								textShadowOpacity: 0.8,
