@@ -35,13 +35,6 @@ const style = StyleSheet.create({
 	},
 	logo3: {
 		elevation: 5,
-		textShadowColor: '#44ff47',
-		textShadowOpacity: 0.8,
-		textShadowRadius: 3,
-		textShadowOffset: {
-			height: 0,
-			width: 10,
-		},
 		shadowColor: '#000000',
 		shadowOpacity: 0.8,
 		shadowRadius: 3,

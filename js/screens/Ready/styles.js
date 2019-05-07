@@ -4,7 +4,6 @@ export default (styles = StyleSheet.create({
 		flex: 0,
 		justifyContent: 'center',
 		alignItems: 'center',
-		backgroundColor: '#F5FCFF',
 	},
 	cardContainer: {
 		paddingTop: 120,
