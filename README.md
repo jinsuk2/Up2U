@@ -1,6 +1,6 @@
 # Up2U
 
-"It's Up2U now"
+"Now, It's Up 2 U"
 
 Up2U is a Multi-Platform Mobile Game that creates quick and witty ice breaker game for local dating scene.
 
